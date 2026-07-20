@@ -464,3 +464,11 @@ body {
     --container-pad: 0 20px;
   }
 }
+
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 48px 0;
+    --container-pad: 0 16px;
+  }
+  .btn { padding: 12px 24px; font-size: 0.875rem; }
+}

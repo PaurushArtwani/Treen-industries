@@ -362,16 +362,27 @@
 
 /* ── Responsive ── */
 @media (max-width: 1024px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+
 @media (max-width: 768px) {
   .why-cta-banner { padding: 40px 28px; }
   .why-cta-banner__content { flex-direction: column; align-items: flex-start; }
   .why-cta-banner__actions { width: 100%; }
   .why-cta-banner__btn { width: 100%; }
   .why-comparison__table th,
-  .why-comparison__table td { padding: 12px 20px; }
+  .why-comparison__table td { padding: 12px 16px; font-size: 0.84rem; }
   .whyus-banner-numbers { display: none; }
+  .why-comparison__header { padding: 24px 20px 18px; }
+  .whyus-body { padding-top: 40px; }
 }
-@media (max-width: 600px) { .why-grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 600px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .why-card { padding: 28px 22px 24px; }
+  .why-comparison__table-wrap { font-size: 0.84rem; }
+  .why-comparison__table th,
+  .why-comparison__table td { padding: 10px 12px; }
+  .why-tick { width: 26px; height: 26px; font-size: 0.8rem; }
+}
 
 /* ── Banner accent numbers ── */
 .whyus-banner-numbers {

@@ -133,13 +133,8 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .ts-counters__inner {
-    gap: 4px;
-  }
-  .ts-stat {
-    min-width: 110px;
-    padding: 10px 12px;
-  }
+  .ts-counters__inner { gap: 4px; }
+  .ts-stat { min-width: 110px; padding: 10px 12px; }
   .ts-sep { display: none; }
 }
 @media (max-width: 480px) {
@@ -148,4 +143,5 @@
     display: grid;
   }
   .ts-stat { min-width: unset; }
+  .ts-ticker__item { font-size: 0.72rem; }
 }

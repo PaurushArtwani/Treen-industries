@@ -1,31 +1,60 @@
-import React from 'react'
-import Navbar          from './components/Navbar'
-import Hero            from './components/Hero'
-import TrustStrip      from './components/TrustStrip'
-import Products        from './components/Products'
-import ProductEcosystem from './components/ProductEcosystem'
-import About           from './components/About'
-import WhyUs           from './components/WhyUs'
-import ImportExport    from './components/ImportExport'
-import Contact         from './components/Contact'
-import Footer          from './components/Footer'
+import { lazy, Suspense } from 'react'
+import Navbar from './components/Navbar'
 import './App.css'
+
+// Lazy-loaded components — each becomes its own split chunk
+const Hero             = lazy(() => import('./components/Hero'))
+const TrustStrip       = lazy(() => import('./components/TrustStrip'))
+const Products         = lazy(() => import('./components/Products'))
+const ProductEcosystem = lazy(() => import('./components/ProductEcosystem'))
+const About            = lazy(() => import('./components/About'))
+const WhyUs            = lazy(() => import('./components/WhyUs'))
+const ImportExport     = lazy(() => import('./components/ImportExport'))
+const Contact          = lazy(() => import('./components/Contact'))
+const Footer           = lazy(() => import('./components/Footer'))
+
+function SectionFallback() {
+  return (
+    <div style={{ minHeight: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span style={{ color: '#aaa', fontSize: '14px' }}>Loading...</span>
+    </div>
+  )
+}
 
 export default function App() {
   return (
     <>
+      {/* Navbar is NOT lazy — it must render immediately */}
       <Navbar />
       <main>
-        <Hero />
-        <TrustStrip />
-        <Products />
-        <ProductEcosystem />
-        <About />
-        <WhyUs />
-        <ImportExport />
-        <Contact />
+        <Suspense fallback={<SectionFallback />}>
+          <Hero />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <TrustStrip />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Products />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ProductEcosystem />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <WhyUs />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ImportExport />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<SectionFallback />}>
+        <Footer />
+      </Suspense>
     </>
   )
 }

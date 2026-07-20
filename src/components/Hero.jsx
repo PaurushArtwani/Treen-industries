@@ -184,9 +184,9 @@ export default function Hero() {
                 exit="exit"
               >
                 {/* Eyebrow */}
-                <motion.div className="hero__eyebrow" variants={textLine}>
-                  <span className="hero__eyebrow-dot" style={{ background: slide.accentColor }} />
-                  <span>ISO Certified · German Polymer Technology</span>
+                <motion.div className="" variants={textLine}>
+                  {/* <span className="hero__eyebrow-dot" style={{ background: slide.accentColor }} />
+                  <span>ISO Certified · German Polymer Technology</span> */}
                 </motion.div>
 
                 {/* Headline */}
@@ -288,7 +288,7 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               className="hero__float hero__float--tl"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut' }}
@@ -299,7 +299,7 @@ export default function Hero() {
                 <div className="hero__float-val">ISO</div>
                 <div className="hero__float-lbl">Certified</div>
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </div>

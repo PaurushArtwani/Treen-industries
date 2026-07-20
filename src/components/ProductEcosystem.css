@@ -226,13 +226,25 @@
 @media (max-width: 1120px) {
   .eco-inner { grid-template-columns: 460px 1fr; gap: 56px; }
 }
+
 @media (max-width: 920px) {
-  .eco-inner { grid-template-columns: 1fr; gap: 56px; }
-  .eco-orbital { max-width: 440px; margin: 0 auto; }
-}
-@media (max-width: 560px) {
+  .eco-inner { grid-template-columns: 1fr; gap: 48px; }
+  .eco-orbital { max-width: 400px; margin: 0 auto; }
   .eco-section { padding: 80px 0 88px; }
-  .eco-features { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .eco-section { padding: 64px 0 72px; }
+  .eco-features { grid-template-columns: 1fr; gap: 9px; }
+  .eco-feature { padding: 13px 15px; gap: 11px; }
+  .eco-stats { border-radius: 14px; }
+  .eco-stat { padding: 18px 8px; }
+  .eco-stat__val { font-size: 1.375rem; }
   .eco-actions { flex-direction: column; }
-  .eco-btn { justify-content: center; }
+  .eco-btn { justify-content: center; width: 100%; }
+  .eco-text { gap: 22px; }
+}
+
+@media (max-width: 400px) {
+  .eco-orbital { max-width: 320px; }
 }

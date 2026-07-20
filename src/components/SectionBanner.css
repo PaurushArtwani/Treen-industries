@@ -220,11 +220,15 @@
     gap: 28px;
   }
   .sec-banner__accent { display: none; }
+  .sec-banner__title { font-size: clamp(1.875rem, 5vw, 2.5rem); }
 }
 
 @media (max-width: 600px) {
-  .sec-banner { padding: 56px 0 96px; }
+  .sec-banner { padding: 52px 0 90px; }
   .sec-banner__shape--circle,
   .sec-banner__shape--ring { display: none; }
-  .sec-banner__title { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+  .sec-banner__title { font-size: clamp(1.625rem, 7vw, 2.25rem); }
+  .sec-banner__subtitle { font-size: 0.9375rem; line-height: 1.72; }
+  .sec-banner__tag { font-size: 0.66rem; }
+  .sec-banner__wave { height: 56px; }
 }

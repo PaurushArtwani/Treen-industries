@@ -396,14 +396,24 @@
 @media (max-width: 900px) {
   .about__layout { grid-template-columns: 1fr; gap: 48px; }
   .about__right { position: static; }
-  .about__info-grid { grid-template-columns: 1fr; }
+  .about__info-grid { grid-template-columns: 1fr 1fr; }
   .about-banner-badge { display: none; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .about-body { padding-top: 40px; padding-bottom: 56px; }
+  .about__info-grid { grid-template-columns: 1fr; }
   .about__actions { flex-direction: column; }
-  .about__actions .btn { justify-content: center; }
+  .about__actions .btn { justify-content: center; width: 100%; }
+  .about__quote-banner { padding: 24px 20px 22px 28px; }
+  .about__quote-text { font-size: 0.9375rem; }
+  .about__milestone-year { width: 48px; height: 48px; font-size: 0.7rem; }
+  .about__milestone-content { padding-bottom: 20px; }
+}
+
+@media (max-width: 480px) {
   .about__stats-panel { grid-template-columns: 1fr; }
   .about__stats-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
   .about__stats-item:last-child { border-bottom: none; }
+  .about__info-card { flex-direction: column; gap: 10px; }
 }

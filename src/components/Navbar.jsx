@@ -89,6 +89,16 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div className={`mobile-menu${menuOpen ? ' mobile-menu--open' : ''}`} aria-hidden={!menuOpen}>
+
+        {/* Close button inside drawer */}
+        <button
+          className="mobile-menu__close"
+          onClick={closeMenu}
+          aria-label="Close menu"
+        >
+          <HiX size={22} />
+        </button>
+
         <nav className="mobile-menu__links">
           {NAV_LINKS.map(link => (
             <ScrollLink
