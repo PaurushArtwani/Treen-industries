@@ -8,26 +8,26 @@ import './Products.css'
 
 /* ── Product images served from /public — referenced by root-relative URL ── */
 const IMG = {
-  copper:           '/Copper.png',
-  premier:          '/premier.png',
-  classic:          '/classic.png',
-  classicWhite:     '/classicWhite.png',
-  classicPlusWhite: '/classicPlusWhite.png',
-  ultraGrey:        '/ultraGrey.png',
-  polymerGrout:     '/POLYMER BASED GROUT.png',
-  groutTremix:      '/GROUT TRE-MIX.png',
-  tp100:            '/TP 100 EPOXY GROUT.png',
-  tp200:            '/TP 200 EPOXY GROUT.png',
-  waterproofing:    '/Water Proofing System.png',
-  tileCleaner:      '/TILE CLeaner.png',
-  tapShower:        '/TAP AND SHOWER CLEANER.png',
-  levellingClips:   '/LEVELLING CLIPS AND WAGES.png',
-  levellingPiler:   '/LEVELLING SYSTEM PILER.png',
-  tileSpacer:       '/TILE SPACER.png',
-  knotchTrowel:     '/KNOTCH TROWEL.png',
-  suctionCup:       '/SUCTION CUP.png',
-  levellingJack:    '/CIRCULAR LEVELLING JACK.png',
-  waterProofingSystem:'/Water Proofing System.png'
+  copper:           './Copper.png',
+  premier:          './premier.png',
+  classic:          './classic.png',
+  classicWhite:     './classicWhite.png',
+  classicPlusWhite: './classicPlusWhite.png',
+  ultraGrey:        './ultraGrey.png',
+  polymerGrout:     './POLYMER BASED GROUT.png',
+  groutTremix:      './GROUT TRE-MIX.png',
+  tp100:            './TP 100 EPOXY GROUT.png',
+  tp200:            './TP 200 EPOXY GROUT.png',
+  waterproofing:    './Water Proofing System.png',
+  tileCleaner:      './TILE CLeaner.png',
+  tapShower:        './TAP AND SHOWER CLEANER.png',
+  levellingClips:   './LEVELLING CLIPS AND WAGES.png',
+  levellingPiler:   './LEVELLING SYSTEM PILER.png',
+  tileSpacer:       './TILE SPACER.png',
+  knotchTrowel:     './KNOTCH TROWEL.png',
+  suctionCup:       './SUCTION CUP.png',
+  levellingJack:    './CIRCULAR LEVELLING JACK.png',
+  waterProofingSystem:'./Water Proofing System.png'
 
 }
 
