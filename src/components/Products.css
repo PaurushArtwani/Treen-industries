@@ -1,0 +1,493 @@
+/* ==========================================
+   Products Section
+   ========================================== */
+
+.products-body { padding-top: 56px; }
+
+/* ── Banner stats ── */
+.products-banner-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.products-banner-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 18px 24px;
+  min-width: 88px;
+  backdrop-filter: blur(8px);
+}
+
+.products-banner-stat__val {
+  font-family: var(--font-heading);
+  font-size: 1.625rem;
+  font-weight: 900;
+  color: #f5a623;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(245,166,35,0.30);
+}
+
+.products-banner-stat__lbl {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 600;
+  margin-top: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Filter bar ── */
+.products__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 56px;
+  padding: 6px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-100);
+  border-radius: 100px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.products__filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border: none;
+  background: transparent;
+  color: var(--color-gray-400);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+
+.products__filter-btn:hover {
+  color: var(--color-navy);
+  background: rgba(11,32,69,0.06);
+}
+
+.products__filter-btn--active {
+  background: var(--color-navy);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(11,32,69,0.22);
+}
+
+.products__filter-icon { font-size: 0.9375rem; line-height: 1; }
+
+/* ── Grid ── */
+.products__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* ==========================================
+   Product Card
+   ========================================== */
+
+.pcard {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-gray-100);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.pcard__glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% -10%, var(--pcard-glow, rgba(59,130,246,0.25)), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.pcard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.pcard:hover .pcard__glow { opacity: 1; }
+
+/* ── Banner top ── */
+.pcard__banner {
+  position: relative;
+  min-height: 190px;
+  padding: 22px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pcard__banner-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+.pcard__banner-glow {
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, var(--pcard-glow, rgba(59,130,246,0.4)) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(22px);
+  opacity: 0.65;
+  transition: opacity 0.3s;
+}
+
+.pcard:hover .pcard__banner-glow { opacity: 1; }
+
+/* Badge */
+.pcard__badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 4px 11px;
+  border-radius: 100px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+}
+
+/* Icon (fallback when no image) */
+.pcard__icon-wrap {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  z-index: 2;
+}
+.pcard__icon {
+  font-size: 2.25rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.32));
+  transition: transform 0.3s ease;
+}
+.pcard:hover .pcard__icon { transform: scale(1.14) rotate(-4deg); }
+
+/* ══════════════════════════════════════════
+   IMAGE BANNER — product bag/bottle photo
+   ══════════════════════════════════════════ */
+.pcard__banner--img {
+  min-height: 260px;
+  padding: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  cursor: default;
+}
+
+/* Radial glow behind the product */
+.pcard__img-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* colour set inline per-product */
+  filter: blur(38px);
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
+}
+.pcard:hover .pcard__img-glow { opacity: 0.85; }
+
+/* Image stage — centered, takes full banner */
+.pcard__img-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px 52px; /* bottom pad leaves room for overlay */
+  pointer-events: none;
+}
+
+.pcard__img {
+  max-height: 185px;
+  max-width: 72%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* black-bg product photos: blend away the black */
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 8px 28px rgba(0,0,0,0.70)) brightness(1.08);
+  transition: transform 0.38s ease, filter 0.38s ease;
+  display: block;
+}
+/* If image doesn't have transparent bg, lighten blend handles it.
+   Extra brightness on hover gives a "pick up" feel. */
+.pcard:hover .pcard__img {
+  filter: drop-shadow(0 16px 40px rgba(0,0,0,0.80)) brightness(1.15);
+}
+
+/* Name overlay at bottom of image banner */
+.pcard__img-overlay {
+  position: relative;
+  z-index: 3;
+  padding: 14px 18px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.30) 70%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pcard__tagline-body {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+  margin-bottom: 2px;
+  line-height: 1.5;
+}
+
+/* Text */
+.pcard__banner-text {
+  position: relative;
+  z-index: 2;
+  margin-top: 8px;
+}
+
+.pcard__cat {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pcard__name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.pcard__tagline {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 400;
+}
+
+/* Accent line */
+.pcard__accent-line {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 3;
+}
+
+/* ── Body ── */
+.pcard__body {
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.pcard__desc {
+  font-size: 0.84375rem;
+  color: var(--color-gray-400);
+  line-height: 1.75;
+}
+
+.pcard__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.pcard__feature {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.8125rem;
+  color: var(--color-gray-500);
+  font-weight: 500;
+}
+
+.pcard__feature-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* CTA */
+.pcard__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(11,32,69,0.04);
+  border: 1.5px solid rgba(11,32,69,0.08);
+  color: var(--color-navy);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.pcard__cta:hover {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: #fff;
+}
+
+.pcard__cta-arrow {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--color-navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.pcard__cta:hover .pcard__cta-arrow {
+  background: rgba(255,255,255,0.18);
+}
+
+/* ==========================================
+   Bottom CTA Banner
+   ========================================== */
+
+.products__cta-banner {
+  position: relative;
+  margin-top: 64px;
+  border-radius: 22px;
+  overflow: hidden;
+  padding: 48px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.products__cta-banner-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #060f22 0%, #0b2045 55%, #1a3c6e 100%);
+}
+
+.products__cta-banner-glow {
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(245,166,35,0.18) 0%, transparent 70%);
+  filter: blur(48px);
+  z-index: 0;
+}
+
+.products__cta-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.products__cta-icon {
+  font-size: 2.75rem;
+  filter: drop-shadow(0 4px 14px rgba(245,166,35,0.4));
+  flex-shrink: 0;
+}
+
+.products__cta-title {
+  font-family: var(--font-heading);
+  font-size: 1.4375rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.products__cta-sub {
+  font-size: 0.9375rem;
+  color: rgba(255,255,255,0.58);
+}
+
+.products__cta-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #f5a623, #d4881a);
+  color: #060f22;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  padding: 16px 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(245,166,35,0.38);
+  transition: transform var(--transition), box-shadow var(--transition);
+  flex-shrink: 0;
+  font-family: var(--font-body);
+}
+
+.products__cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(245,166,35,0.55);
+}
+
+/* ==========================================
+   Responsive
+   ========================================== */
+
+@media (max-width: 768px) {
+  .products-banner-stats { display: none; }
+  .products__grid { grid-template-columns: 1fr; }
+  .products__cta-banner { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+  .products__cta-btn { width: 100%; justify-content: center; }
+  .products__filters {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    justify-content: flex-start;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products__filter-btn { padding: 8px 14px; font-size: 0.8125rem; }
+}
