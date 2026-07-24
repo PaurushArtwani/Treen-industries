@@ -43,6 +43,7 @@
 }
 .orb-arc--inner { animation: arcSpin 3s linear infinite; }
 .orb-arc--outer { animation: arcSpin 5.5s linear infinite reverse; }
+.orb-arc--third { animation: arcSpin 9s linear infinite; }
 @keyframes arcSpin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }

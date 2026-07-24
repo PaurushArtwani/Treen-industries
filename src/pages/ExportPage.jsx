@@ -54,21 +54,21 @@ const CATEGORIES = [
     available: true,
     cards: [
       {
-        image: '/watch-1.jpg',
+        image: './W1.jpeg',
         name: 'Classic Decorative Wall Watch',
         description: 'Elegant wall watches with ornate frames in gold, silver and antique finishes. Perfect for living rooms, hotels and corporate lobbies.',
         badge: 'Best Seller', badgeColor: '#f5a623',
         tags: ['Decorative', 'Gold Frame', 'Living Room'],
       },
       {
-        image: '/watch-2.jpg',
+        image: './W2.jpeg',
         name: 'Modern Minimalist Wall Watch',
         description: 'Sleek frameless and slim-profile wall watches with silent quartz movement. Ideal for offices, co-working spaces and modern interiors.',
         badge: 'Trending', badgeColor: '#06b6d4',
         tags: ['Minimalist', 'Silent Movement', 'Office'],
       },
       {
-        image: '/watch-3.jpg',
+        image: './W3.jpeg',
         name: 'Large Statement Wall Watch',
         description: 'Oversized wall watches in wood, metal and acrylic finishes. A bold statement piece for retail stores, restaurants and premium residences.',
         badge: 'Premium', badgeColor: '#a855f7',
@@ -89,21 +89,21 @@ const CATEGORIES = [
     available: true,
     cards: [
       {
-        image: '/furniture-1.jpg',
+        image: './F1.jpeg',
         name: 'Living Room Collection',
         description: 'Modern and classic sofas, coffee tables and modular sets. Crafted for residential and hospitality interiors. Custom sizes available.',
         badge: 'Best Seller', badgeColor: '#a855f7',
         tags: ['Sofas', 'Modular Sets', 'Custom Sizes'],
       },
       {
-        image: '/furniture-2.jpg',
+        image: './F2.jpeg',
         name: 'Office Furniture Range',
         description: 'Ergonomic chairs, executive desks and storage systems for corporate environments. Bulk orders with branded packaging.',
         badge: 'Popular', badgeColor: '#06b6d4',
         tags: ['Ergonomic', 'Corporate', 'Bulk Orders'],
       },
       {
-        image: '/furniture-3.jpg',
+        image: './F3.jpeg',
         name: 'Wooden & Handcrafted',
         description: 'Solid wood and engineered wood furniture with premium finishes. Custom designs available for retail chains and interior designers.',
         badge: 'Premium', badgeColor: '#22c55e',
@@ -218,7 +218,7 @@ function ProductShowcase({ category }) {
                 alt={card.name}
                 className="ep-sc-card__img"
                 onError={(e) => {
-                  e.currentTarget.style.display = 'none'
+                  // e.currentTarget.style.display = 'none'
                   e.currentTarget.nextSibling.style.display = 'flex'
                 }}
               />

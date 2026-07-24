@@ -9,15 +9,14 @@ const CX = W / 2    // center X / Y
 /* ── Nodes ── */
 const NODES = [
   // inner orbit r=112
-  { id: 0, label: 'Tile Adhesives',  sub: '6 variants', icon: '🪣', color: '#3b82f6', orbit: 112, startAngle: 0, highlight: false   },
-  { id: 1, label: 'Epoxy Grouts',    sub: '36+ colours', icon: '🧴', color: '#f5a623', orbit: 112, startAngle: 120, highlight: false },
-  { id: 2, label: 'Waterproofing',   sub: 'ISO certified',icon: '💧', color: '#22c55e', orbit: 112, startAngle: 240, highlight: false },
+  { id: 0, label: 'Tile Adhesives',  sub: '6 variants',        icon: '🪣', color: '#3b82f6', orbit: 112, startAngle: 0   },
+  { id: 1, label: 'Epoxy Grouts',    sub: '36+ colours',       icon: '🧴', color: '#f5a623', orbit: 112, startAngle: 120 },
+  { id: 2, label: 'Waterproofing',   sub: 'ISO certified',     icon: '💧', color: '#22c55e', orbit: 112, startAngle: 240 },
   // outer orbit r=198
-  { id: 3, label: 'Tile Grout',      sub: 'Polymer based', icon: '🎨', color: '#06b6d4', orbit: 198, startAngle: 18, highlight: false  },
-  { id: 4, label: 'Tile Cleaner',    sub: 'Daily maintenance',icon: '🧹', color: '#a855f7', orbit: 198, startAngle: 90, highlight: false  },
-  { id: 5, label: 'Tile Spacers',    sub: '2–10 mm sizes', icon: '📐', color: '#f87171', orbit: 198, startAngle: 162, highlight: false },
-  { id: 6, label: 'Levelling Sys.',  sub: 'Piler & Jacks', icon: '🔧', color: '#34d399', orbit: 198, startAngle: 234, highlight: false },
-  { id: 7, label: 'Export',          sub: 'Worldwide',     icon: '🚢', color: '#f59e0b', orbit: 198, startAngle: 306, highlight: true },
+  { id: 3, label: 'Tile Grout',      sub: 'Polymer based',     icon: '🎨', color: '#06b6d4', orbit: 198, startAngle: 18  },
+  { id: 4, label: 'Tile Cleaner',    sub: 'Daily maintenance', icon: '🧹', color: '#a855f7', orbit: 198, startAngle: 90  },
+  { id: 5, label: 'Tile Spacers',    sub: '2–10 mm sizes',     icon: '📐', color: '#f87171', orbit: 198, startAngle: 162 },
+  { id: 6, label: 'Levelling Sys.',  sub: 'Piler & Jacks',     icon: '🔧', color: '#34d399', orbit: 198, startAngle: 234 },
 ]
 
 const INNER_PERIOD = 20000  // ms
@@ -114,6 +113,11 @@ export default function OrbitalRing({ accentColor = '#f5a623' }) {
           fill="none" stroke="rgba(255,255,255,0.10)"
           strokeWidth="1" strokeDasharray="4 9" />
 
+        {/* ── Third (export) orbit ring ── */}
+        <circle cx={CX} cy={CX} r={255}
+          fill="none" stroke="rgba(245,166,35,0.12)"
+          strokeWidth="1" strokeDasharray="3 14" />
+
         {/* ── Spinning accent arcs ── */}
         <circle cx={CX} cy={CX} r={112}
           fill="none" stroke={accentColor}
@@ -128,6 +132,13 @@ export default function OrbitalRing({ accentColor = '#f5a623' }) {
           strokeDasharray="110 1144" strokeLinecap="round"
           className="orb-arc orb-arc--outer"
           style={{ filter: 'drop-shadow(0 0 7px #06b6d4)' }}
+        />
+        <circle cx={CX} cy={CX} r={255}
+          fill="none" stroke="#f59e0b"
+          strokeWidth="1.5" strokeOpacity="0.35"
+          strokeDasharray="80 1522" strokeLinecap="round"
+          className="orb-arc orb-arc--third"
+          style={{ filter: 'drop-shadow(0 0 6px #f59e0b)' }}
         />
 
         {/* ── Pulse rings ── */}
@@ -164,140 +175,64 @@ export default function OrbitalRing({ accentColor = '#f5a623' }) {
         {positions.map(n => (
           <g key={`n${n.id}`}
             transform={`translate(${n.x},${n.y})`}
-            className={`orb-node-group${n.highlight ? ' orb-node-group--highlight' : ''}`}
+            className="orb-node-group"
             onMouseEnter={() => setActive(n.id)}
             onMouseLeave={() => setActive(null)}
             style={{ cursor: 'pointer' }}
-            filter={n.highlight ? 'url(#glowHighlight)' : (active === n.id ? `url(#glow${n.id})` : undefined)}
+            filter={active === n.id ? `url(#glow${n.id})` : undefined}
           >
-            {n.highlight ? (
-              /* ══ EXPORT — premium badge node ══ */
-              <>
-                {/* outermost spinning dashed ring */}
-                <circle r={38}
-                  fill="none"
-                  stroke="#f59e0b"
-                  strokeWidth="1.2"
-                  strokeOpacity="0.55"
-                  strokeDasharray="6 5"
-                  strokeLinecap="round"
-                  style={{ transformOrigin: '0 0', animation: 'exportRingSpinCW 4s linear infinite' }}
-                />
-                {/* pulsing halo */}
-                <circle r={34}
-                  fill="rgba(245,158,11,0.10)"
-                  stroke="#f59e0b"
-                  strokeWidth="0"
-                  style={{ transformOrigin: '0 0' }}
-                >
-                  <animate attributeName="r" values="30;38;30" dur="2s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0.7;0.1;0.7" dur="2s" repeatCount="indefinite" />
-                </circle>
-                {/* inner accent ring counter-spin */}
-                <circle r={28}
-                  fill="none"
-                  stroke="#fcd34d"
-                  strokeWidth="1.5"
-                  strokeOpacity="0.45"
-                  strokeDasharray="4 8"
-                  strokeLinecap="round"
-                  style={{ transformOrigin: '0 0', animation: 'exportRingSpinCCW 6s linear infinite' }}
-                />
-                {/* main filled disc — golden gradient */}
-                <circle r={23}
-                  fill="url(#exportGradient)"
-                  stroke="#f59e0b"
-                  strokeWidth="2"
-                  strokeOpacity="0.9"
-                />
-                {/* inner glass sheen */}
-                <ellipse cx="-6" cy="-9" rx="10" ry="7"
-                  fill="rgba(255,255,255,0.18)"
-                  style={{ pointerEvents: 'none' }}
-                />
-                {/* icon */}
-                <foreignObject x="-13" y="-14" width="26" height="28">
-                  <div
-                    xmlns="http://www.w3.org/1999/xhtml"
-                    style={{
-                      fontSize: '17px', width: '26px', height: '28px',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.7)) brightness(1.1)',
-                    }}
-                  >
-                    🚢
-                  </div>
-                </foreignObject>
-                {/* "NEW" badge chip */}
-                <g transform="translate(16,-18)">
-                  <rect x="-10" y="-7" width="20" height="13" rx="6"
-                    fill="#ef4444" stroke="rgba(0,0,0,0.3)" strokeWidth="0.8"
-                  />
-                  <text textAnchor="middle" y="2"
-                    fontSize="6.5" fontWeight="900" fill="#fff"
-                    fontFamily="Inter, sans-serif" letterSpacing="0.05em"
-                  >
-                    NEW
-                  </text>
-                </g>
-                {/* label */}
-                <text y={42} textAnchor="middle"
-                  fontSize="11.5" fontWeight="900"
-                  fill="#fcd34d"
-                  fontFamily="Inter, sans-serif"
-                  letterSpacing="0.04em"
-                  style={{ textShadow: '0 0 8px #f59e0b' }}
-                >
-                  Export
-                </text>
-              </>
-            ) : (
-              /* ══ Regular node ══ */
-              <>
-                {/* outer glow ring */}
-                <circle r={30}
-                  fill={`${n.color}${active === n.id ? '22' : '0d'}`}
-                  stroke={n.color} strokeWidth={active === n.id ? 1.8 : 0.7}
-                  strokeOpacity={active === n.id ? 1 : 0.5}
-                  style={{ transition: 'all 0.28s' }}
-                />
-                {/* glass body */}
-                <circle r={22}
-                  fill={active === n.id ? `${n.color}28` : 'rgba(10,18,45,0.88)'}
-                  stroke={n.color}
-                  strokeWidth={active === n.id ? 2 : 1}
-                  strokeOpacity={active === n.id ? 1 : 0.65}
-                  style={{ transition: 'all 0.28s' }}
-                />
-                {/* glass sheen */}
-                <circle r={22} fill="url(#sheen)" fillOpacity="0.08" />
-                {/* icon */}
-                <foreignObject x="-13" y="-14" width="26" height="28">
-                  <div
-                    xmlns="http://www.w3.org/1999/xhtml"
-                    style={{
-                      fontSize: '15px', width: '26px', height: '28px',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      lineHeight: 1,
-                      filter: active === n.id
-                        ? `drop-shadow(0 0 5px ${n.color}) brightness(1.2)`
-                        : 'none',
-                      transition: 'filter 0.28s',
-                    }}
-                  >
-                    {n.icon}
-                  </div>
-                </foreignObject>
-                {/* label */}
-                <text y={40} textAnchor="middle"
-                  fontSize="10.5" fontWeight="700"
-                  fill={active === n.id ? '#fff' : 'rgba(255,255,255,0.60)'}
-                  fontFamily="Inter, sans-serif"
-                  style={{ transition: 'fill 0.28s', letterSpacing: '0.01em' }}
-                >
-                  {n.label}
-                </text>
-              </>
+            {/* outer glow ring */}
+            <circle r={n.orbit === 255 ? 26 : 30}
+              fill={`${n.color}${active === n.id ? '22' : '0d'}`}
+              stroke={n.color} strokeWidth={active === n.id ? 1.8 : 0.7}
+              strokeOpacity={active === n.id ? 1 : 0.5}
+              style={{ transition: 'all 0.28s' }}
+            />
+            {/* glass body */}
+            <circle r={n.orbit === 255 ? 19 : 22}
+              fill={active === n.id ? `${n.color}28` : 'rgba(10,18,45,0.88)'}
+              stroke={n.color}
+              strokeWidth={active === n.id ? 2 : 1}
+              strokeOpacity={active === n.id ? 1 : 0.65}
+              style={{ transition: 'all 0.28s' }}
+            />
+            {/* icon */}
+            <foreignObject x="-13" y="-14" width="26" height="28">
+              <div
+                xmlns="http://www.w3.org/1999/xhtml"
+                style={{
+                  fontSize: n.orbit === 255 ? '13px' : '15px',
+                  width: '26px', height: '28px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  lineHeight: 1,
+                  filter: active === n.id
+                    ? `drop-shadow(0 0 5px ${n.color}) brightness(1.2)`
+                    : 'none',
+                  transition: 'filter 0.28s',
+                }}
+              >
+                {n.icon}
+              </div>
+            </foreignObject>
+            {/* label */}
+            <text y={n.orbit === 255 ? 36 : 40} textAnchor="middle"
+              fontSize={n.orbit === 255 ? '9.5' : '10.5'} fontWeight="700"
+              fill={active === n.id ? '#fff' : 'rgba(255,255,255,0.60)'}
+              fontFamily="Inter, sans-serif"
+              style={{ transition: 'fill 0.28s', letterSpacing: '0.01em' }}
+            >
+              {n.label}
+            </text>
+            {/* "We Export" sub-label for third orbit nodes */}
+            {n.orbit === 255 && (
+              <text y={48} textAnchor="middle"
+                fontSize="8" fontWeight="600"
+                fill={n.color}
+                fontFamily="Inter, sans-serif"
+                opacity="0.75"
+              >
+                We Export
+              </text>
             )}
           </g>
         ))}
