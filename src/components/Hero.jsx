@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link as ScrollLink } from 'react-scroll'
 import { HiArrowRight, HiChevronLeft, HiChevronRight, HiPhone } from 'react-icons/hi'
 import { MdVerified, MdLocalShipping, MdSupportAgent, MdStar } from 'react-icons/md'
+import { GiWatch, GiSofa } from 'react-icons/gi'
 import OrbitalRing from './OrbitalRing'
 import './Hero.css'
 
@@ -15,6 +16,8 @@ const SLIDES = [
     sub: 'Premium Adhesives · Grouts · Waterproofing · Construction Chemicals engineered for lasting performance across residential, commercial & industrial applications.',
     cta1: 'Get a Free Quote',
     cta2: 'Explore Products',
+    cta1Link: 'contact',
+    cta2Link: 'products',
     accentColor: '#f5a623',
     bg: 'radial-gradient(ellipse 130% 90% at 65% -10%, #0e2a5c 0%, #040c1e 60%)',
     glow1: 'rgba(245,166,35,0.18)',
@@ -28,6 +31,8 @@ const SLIDES = [
     sub: '100% stain-free, antibacterial & UV-resistant epoxy grouts in 36+ colours. Ideal for kitchens, bathrooms, hospitals, swimming pools & high-traffic areas.',
     cta1: 'View Grout Range',
     cta2: 'Get Quote',
+    cta1Link: 'products',
+    cta2Link: 'contact',
     accentColor: '#06b6d4',
     bg: 'radial-gradient(ellipse 130% 90% at 65% -10%, #022c40 0%, #040c1e 60%)',
     glow1: 'rgba(6,182,212,0.18)',
@@ -41,6 +46,8 @@ const SLIDES = [
     sub: 'Complete moisture protection for roofs, basements, bathrooms & wet areas. ISO-certified formulations powered by German polymer technology.',
     cta1: 'Explore Waterproofing',
     cta2: 'Get Quote',
+    cta1Link: 'products',
+    cta2Link: 'contact',
     accentColor: '#22c55e',
     bg: 'radial-gradient(ellipse 130% 90% at 65% -10%, #022d14 0%, #040c1e 60%)',
     glow1: 'rgba(34,197,94,0.15)',
@@ -54,10 +61,28 @@ const SLIDES = [
     sub: 'Complete installation ecosystem — levelling clips, suction cups, knotch trowels, tile spacers & circular levelling jacks for professional results every time.',
     cta1: 'View Accessories',
     cta2: 'Get Quote',
+    cta1Link: 'products',
+    cta2Link: 'contact',
     accentColor: '#a855f7',
     bg: 'radial-gradient(ellipse 130% 90% at 65% -10%, #1a0a2e 0%, #040c1e 60%)',
     glow1: 'rgba(168,85,247,0.18)',
     glow2: 'rgba(245,166,35,0.10)',
+  },
+  {
+    id: 4,
+    headline1: 'Export Premium',
+    headline2: 'Watches , Furniture , Sink & Mirrors',
+    headline3: 'Worldwide',
+    sub: 'TREEN® extends its global trade network to luxury timepieces & handcrafted furniture — 5 categories, custom packaging, FOB & CIF available. Shipped to Middle East, Europe, Africa & beyond.',
+    cta1: 'Explore Export Range',
+    cta2: 'Get Export Quote',
+    cta1Link: 'import-export',
+    cta2Link: 'contact',
+    accentColor: '#f97316',
+    bg: 'radial-gradient(ellipse 130% 90% at 65% -10%, #3d1500 0%, #040c1e 60%)',
+    glow1: 'rgba(249,115,22,0.22)',
+    glow2: 'rgba(245,166,35,0.12)',
+    isExport: true,
   },
 ]
 
@@ -220,7 +245,7 @@ export default function Hero() {
 
                 {/* CTAs */}
                 <motion.div className="hero__ctas" variants={textLine}>
-                  <ScrollLink to="contact" smooth duration={500} offset={-72}
+                  <ScrollLink to={slide.cta1Link} smooth duration={500} offset={-72}
                     className="hero__btn hero__btn--primary"
                     style={{
                       background: `linear-gradient(135deg, ${slide.accentColor}, ${slide.accentColor}bb)`,
@@ -233,7 +258,7 @@ export default function Hero() {
                     <HiPhone size={17} />
                     Call Now
                   </a>
-                  <ScrollLink to="products" smooth duration={500} offset={-72}
+                  <ScrollLink to={slide.cta2Link} smooth duration={500} offset={-72}
                     className="hero__btn hero__btn--ghost">
                     {slide.cta2}
                   </ScrollLink>
@@ -241,12 +266,17 @@ export default function Hero() {
 
                 {/* Trust pills */}
                 <motion.div className="hero__pills" variants={textLine}>
-                  {[
+                  {(slide.isExport ? [
+                    { icon: <GiWatch size={14} />, text: 'Watches Export' },
+                    { icon: <GiSofa size={14} />,        text: 'Furniture Export' },
+                    { icon: <MdLocalShipping size={14} />, text: 'Global Shipping' },
+                    { icon: <MdVerified size={14} />,    text: 'FOB & CIF' },
+                  ] : [
                     { icon: <MdVerified size={14} />,      text: 'ISO Certified' },
                     { icon: <MdLocalShipping size={14} />, text: 'Pan-India Delivery' },
                     { icon: <MdSupportAgent size={14} />,  text: 'Tech Support' },
                     { icon: <MdStar size={14} />,          text: 'German Polymer Tech' },
-                  ].map((b, i) => (
+                  ]).map((b, i) => (
                     <motion.span
                       key={i}
                       className="hero__pill"
@@ -281,11 +311,23 @@ export default function Hero() {
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
               whileHover={{ scale: 1.08 }}
             >
-              <span className="hero__float-emoji">🇩🇪</span>
-              <div>
-                <div className="hero__float-val">German</div>
-                <div className="hero__float-lbl">Polymer Tech</div>
-              </div>
+              {slide.isExport ? (
+                <>
+                  <span className="hero__float-emoji">�</span>
+                  <div>
+                    <div className="hero__float-val">Export</div>
+                    <div className="hero__float-lbl">Worldwide</div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <span className="hero__float-emoji">�🇩🇪</span>
+                  <div>
+                    <div className="hero__float-val">German</div>
+                    <div className="hero__float-lbl">Polymer Tech</div>
+                  </div>
+                </>
+              )}
             </motion.div>
 
             {/* <motion.div

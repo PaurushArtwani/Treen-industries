@@ -1,29 +1,27 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import React from 'react'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import {
-  HiArrowRight, HiDocumentText, HiShieldCheck,
-  HiCheckCircle, HiPhone,
+  HiArrowRight, HiDocumentText,
+  HiCheckCircle, HiPhone, HiDownload, HiClock,
 } from 'react-icons/hi'
 import {
-  MdVerified, MdFactory,
+  MdVerified, MdOutlineKitchen,
 } from 'react-icons/md'
 import {
-  FaShip, FaBoxOpen, FaWarehouse,
+  FaShip, FaWarehouse,
   FaHandshake, FaWhatsapp,
 } from 'react-icons/fa'
 import {
   TbTrowel, TbDroplet, TbCertificate,
   TbFileInvoice, TbPackage, TbMessage2,
-  TbBuildingFactory2, TbFlask2,
-  TbColorSwatch, TbAtom2, TbWorldUpload,
-  TbShip, TbClipboardList,
+  TbFlask2, TbDeviceWatch,
 } from 'react-icons/tb'
-import { GiFactory, GiCargoCrane } from 'react-icons/gi'
+import { GiCargoCrane, GiWatch, GiWoodFrame, GiSofa, GiOfficeChair, GiMirrorMirror } from 'react-icons/gi'
 import { BsGlobeEuropeAfrica, BsBoxSeam } from 'react-icons/bs'
 import SectionBanner from './SectionBanner'
-import { fadeUp, fadeLeft, fadeRight, staggerContainer, VP } from './AnimationUtils'
+import { VP } from './AnimationUtils'
 import './ImportExport.css'
 
 /* ── Data ── */
@@ -58,37 +56,6 @@ const EXPORT_PRODUCTS = [
   },
 ]
 
-const IMPORT_PRODUCTS = [
-  {
-    Icon: TbBuildingFactory2,
-    name: 'German Polymer Additives',
-    desc: 'High-grade polymer modifiers and chemical additives imported from Germany for premium formulations.',
-    origin: 'Germany',
-    color: '#a855f7',
-  },
-  {
-    Icon: TbFlask2,
-    name: 'Specialty Resins',
-    desc: 'Epoxy and polyurethane base resins sourced from leading international chemical manufacturers.',
-    origin: 'Europe / Asia',
-    color: '#f87171',
-  },
-  {
-    Icon: TbColorSwatch,
-    name: 'Pigment Systems',
-    desc: 'UV-stable pigments and colour concentrates for producing 36+ consistent grout colours.',
-    origin: 'Germany / Italy',
-    color: '#fb923c',
-  },
-  {
-    Icon: TbAtom2,
-    name: 'Chemical Intermediates',
-    desc: 'Raw materials and intermediates for waterproofing and admixture manufacturing.',
-    origin: 'Multi-origin',
-    color: '#34d399',
-  },
-]
-
 const PROCESS_STEPS = [
   {
     step: '01', Icon: TbMessage2, title: 'Submit Enquiry',
@@ -112,24 +79,54 @@ const PROCESS_STEPS = [
   },
 ]
 
-const EXPORT_MARKETS = [
-  { flag: '🇸🇦', name: 'Saudi Arabia',  region: 'Middle East' },
-  { flag: '🇦🇪', name: 'UAE',           region: 'Middle East' },
-  { flag: '🇶🇦', name: 'Qatar',         region: 'GCC' },
-  { flag: '🇰🇼', name: 'Kuwait',        region: 'GCC' },
-  { flag: '🇳🇬', name: 'Nigeria',       region: 'Africa' },
-  { flag: '🇰🇪', name: 'Kenya',         region: 'Africa' },
-  { flag: '🇧🇩', name: 'Bangladesh',    region: 'South Asia' },
-  { flag: '🇳🇵', name: 'Nepal',         region: 'South Asia' },
-  { flag: '🇱🇰', name: 'Sri Lanka',     region: 'SAARC' },
-  { flag: '🇲🇾', name: 'Malaysia',      region: 'SE Asia' },
-]
-
 const TRADE_STATS = [
   { val: '10+', label: 'Export Markets',     Icon: BsGlobeEuropeAfrica, color: '#3b82f6' },
   { val: 'FOB', label: 'Morbi Port',         Icon: FaShip,              color: '#06b6d4' },
   { val: 'ISO', label: 'Certified Products', Icon: TbCertificate,       color: '#f59e0b' },
   { val: '48h', label: 'Quote Turnaround',   Icon: TbMessage2,          color: '#22c55e' },
+]
+
+const CATALOGS = [
+  {
+    id: 'watches',
+    Icon: GiWatch,
+    title: 'Watches',
+    description: 'Explore our complete collection of analog and luxury timepieces. Premium brands, bulk orders, and retail export worldwide.',
+    pdfFile: '/Watch.pdf',
+    pdfSize: '2.4 MB',
+    color: '#f97316',
+    available: true,
+  },
+  {
+    id: 'furniture',
+    Icon: GiSofa,
+    title: 'Furniture',
+    description: 'Handcrafted living room, office, and custom wooden furniture. Modern designs and traditional craftsmanship for global markets.',
+    pdfFile: '/Furniture.pdf',
+    pdfSize: '3.1 MB',
+    color: '#a855f7',
+    available: true,
+  },
+  {
+    id: 'sinks',
+    Icon: MdOutlineKitchen,
+    title: 'Sinks',
+    description: 'Premium kitchen and bathroom sinks in stainless steel, ceramic, and granite. Wholesale catalog coming soon.',
+    pdfFile: null,
+    pdfSize: null,
+    color: '#06b6d4',
+    available: false,
+  },
+  {
+    id: 'mirrors',
+    Icon: GiMirrorMirror,
+    title: 'Mirrors',
+    description: 'Decorative and functional mirrors for residential and commercial projects. LED-illuminated and frameless options.',
+    pdfFile: null,
+    pdfSize: null,
+    color: '#22c55e',
+    available: false,
+  },
 ]
 
 const BANNER_ACCENT = (
@@ -145,12 +142,6 @@ const BANNER_ACCENT = (
 )
 
 /* ── Animation variants ── */
-const panelVariants = {
-  initial: { opacity: 0, y: 20, filter: 'blur(4px)' },
-  animate: { opacity: 1, y: 0,  filter: 'blur(0px)', transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, y: -14, filter: 'blur(3px)', transition: { duration: 0.22 } },
-}
-
 const cardVariant = {
   hidden:  { opacity: 0, y: 28, scale: 0.97 },
   visible: (i) => ({
@@ -172,35 +163,29 @@ const lineVariant = {
   visible: { scaleX: 1, transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 } },
 }
 
-export default function ImportExport() {
-  const [tab, setTab] = useState('export')
+export default function Export() {
   const processRef  = useRef(null)
   const processView = useInView(processRef, { once: true, amount: 0.2 })
   const docsRef     = useRef(null)
   const docsView    = useInView(docsRef, { once: true, amount: 0.3 })
 
-  const products = tab === 'export' ? EXPORT_PRODUCTS : IMPORT_PRODUCTS
-
   return (
     <section id="import-export" className="ie-section">
 
       <SectionBanner
-        tag="Import & Export"
+        tag="Export"
         title={<>TREEN® Goes <em>Global</em></>}
-        subtitle="We export ISO-certified TREEN® construction chemicals worldwide and import premium raw materials to deliver German-quality products — Made in India."
+        subtitle="We export ISO-certified TREEN® construction chemicals worldwide to deliver German-quality products — Made in India."
         theme="teal"
         align="left"
         accent={BANNER_ACCENT}
-        breadcrumb={[{ label: 'Import & Export' }]}
+        breadcrumb={[{ label: 'Export' }]}
       />
 
       <div className="section ie-body">
         <div className="container">
 
-          {/* ══ OVERVIEW CARDS ══ */}
-     
-
-          {/* ══ PRODUCT TAB PANEL ══ */}
+          {/* ══ PRODUCT GRID ══ */}
           <motion.div
             className="ie-products-section"
             initial={{ opacity: 0, y: 44 }}
@@ -210,57 +195,37 @@ export default function ImportExport() {
           >
             <div className="ie-products-header">
               <div>
-                <span className="ie-products-tag">Product Range</span>
-                <h3 className="ie-products-title">What We Trade</h3>
-                <p className="ie-products-sub">Switch between our export-ready products and the premium raw materials we import.</p>
-              </div>
-              <div className="ie-tabs" role="tablist">
-                {[
-                  { id: 'export', label: 'Export Products', Icon: FaShip },
-                  { id: 'import', label: 'Import Materials', Icon: FaBoxOpen },
-                ].map(t => (
-                  <motion.button
-                    key={t.id} role="tab" aria-selected={tab === t.id}
-                    className={`ie-tab${tab === t.id ? ' ie-tab--active' : ''}`}
-                    onClick={() => setTab(t.id)}
-                    whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                  >
-                    <t.Icon size={15} />
-                    {t.label}
-                  </motion.button>
-                ))}
+                <span className="ie-products-tag">Export Range</span>
+                <h3 className="ie-products-title">What We Export</h3>
+                <p className="ie-products-sub">ISO-certified TREEN® products ready for bulk export to global markets.</p>
               </div>
             </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={tab} className="ie-products-grid"
-                variants={panelVariants} initial="initial" animate="animate" exit="exit"
-              >
-                {products.map((p, i) => (
-                  <motion.div
-                    key={p.name} className="ie-product-card"
-                    style={{ '--ie-color': p.color }}
-                    variants={cardVariant} custom={i}
-                    initial="hidden" animate="visible"
-                    whileHover={{ y: -8, transition: { duration: 0.22 } }}
-                  >
-                    <div className="ie-product-card__bar" />
-                    <div className="ie-product-card__icon-wrap">
-                      <p.Icon size={28} className="ie-product-card__icon" />
-                    </div>
-                    <h4 className="ie-product-card__name">{p.name}</h4>
-                    <p className="ie-product-card__desc">{p.desc}</p>
-                    <div className="ie-product-card__footer">
-                      {tab === 'export'
-                        ? p.markets.map((m, j) => <span key={j} className="ie-product-card__tag">{m}</span>)
-                        : <span className="ie-product-card__tag">📍 {p.origin}</span>
-                      }
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+            <div className="ie-products-grid">
+              {EXPORT_PRODUCTS.map((p, i) => (
+                <motion.div
+                  key={p.name} className="ie-product-card"
+                  style={{ '--ie-color': p.color }}
+                  variants={cardVariant} custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={VP}
+                  whileHover={{ y: -8, transition: { duration: 0.22 } }}
+                >
+                  <div className="ie-product-card__bar" />
+                  <div className="ie-product-card__icon-wrap">
+                    <p.Icon size={28} className="ie-product-card__icon" />
+                  </div>
+                  <h4 className="ie-product-card__name">{p.name}</h4>
+                  <p className="ie-product-card__desc">{p.desc}</p>
+                  <div className="ie-product-card__footer">
+                    {p.markets.map((m, j) => (
+                      <span key={j} className="ie-product-card__tag">{m}</span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           {/* ══ PROCESS TIMELINE ══ */}
@@ -353,6 +318,212 @@ export default function ImportExport() {
             </div>
           </motion.div>
 
+          {/* ══ WATCHES & FURNITURE EXPORT — 5 PRODUCT CARDS ══ */}
+          <motion.div
+            className="ie-wf-section"
+            initial={{ opacity: 0, y: 44 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VP}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {/* Section header */}
+            <div className="ie-wf-section__header">
+              <div className="ie-wf-section__header-left">
+                <span className="ie-wf-section__tag">Beyond Chemicals</span>
+                <h3 className="ie-wf-section__title">
+                  We Also Export <em>Watches</em> &amp; <em>Furniture</em>
+                </h3>
+                <p className="ie-wf-section__sub">
+                  TREEN® extends its global trade network to premium timepieces and handcrafted
+                  furniture — shipped worldwide with the same reliability as our chemicals.
+                </p>
+              </div>
+              <div className="ie-wf-section__header-right">
+                <div className="ie-wf-section__stat">
+                  <GiWatch size={22} className="ie-wf-section__stat-icon" />
+                  <span>5 Categories</span>
+                </div>
+                <div className="ie-wf-section__stat">
+                  <BsGlobeEuropeAfrica size={18} className="ie-wf-section__stat-icon" />
+                  <span>Global Export</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 5 product cards */}
+            <div className="ie-wf-grid">
+              {[
+                {
+                  Icon: TbDeviceWatch,
+                  name: 'Analog Watches',
+                  desc: 'Classic &amp; fashion analog timepieces in bulk — ideal for retail chains, distributors and gifting.',
+                  markets: ['Middle East', 'Europe', 'Africa'],
+                  color: '#f5a623',
+                },
+                {
+                  Icon: GiWatch,
+                  name: 'Luxury Watches',
+                  desc: 'Premium branded &amp; designer watches. Curated selection for high-end retail and wholesale export.',
+                  markets: ['UAE', 'UK', 'Europe'],
+                  color: '#a855f7',
+                },
+                {
+                  Icon: GiSofa,
+                  name: 'Living Room Furniture',
+                  desc: 'Sofas, loungers &amp; modular sets — modern and traditional styles for residential &amp; hospitality.',
+                  markets: ['Middle East', 'Africa', 'SE Asia'],
+                  color: '#fb7120',
+                },
+                {
+                  Icon: GiOfficeChair,
+                  name: 'Office Furniture',
+                  desc: 'Ergonomic chairs, workstations &amp; storage solutions for corporate &amp; co-working spaces.',
+                  markets: ['GCC', 'South Asia', 'Europe'],
+                  color: '#06b6d4',
+                },
+                {
+                  Icon: GiWoodFrame,
+                  name: 'Wooden &amp; Custom Furniture',
+                  desc: 'Handcrafted solid wood &amp; engineered wood furniture. Custom sizing and finishing available.',
+                  markets: ['Global', 'Middle East', 'SAARC'],
+                  color: '#22c55e',
+                },
+              ].map((p, i) => (
+                <motion.div
+                  key={i}
+                  className="ie-wf-card"
+                  style={{ '--wf-color': p.color }}
+                  initial={{ opacity: 0, y: 28, scale: 0.97 }}
+                  whileInView={{
+                    opacity: 1, y: 0, scale: 1,
+                    transition: { delay: i * 0.09, duration: 0.48, ease: [0.22, 1, 0.36, 1] },
+                  }}
+                  viewport={VP}
+                  whileHover={{ y: -8, transition: { duration: 0.22 } }}
+                >
+                  <div className="ie-wf-card__bar" />
+                  <div className="ie-wf-card__icon-wrap">
+                    <p.Icon size={28} className="ie-wf-card__icon" />
+                  </div>
+                  <h4 className="ie-wf-card__name" dangerouslySetInnerHTML={{ __html: p.name }} />
+                  <p className="ie-wf-card__desc" dangerouslySetInnerHTML={{ __html: p.desc }} />
+                  <div className="ie-wf-card__footer">
+                    {p.markets.map((m, j) => (
+                      <span key={j} className="ie-wf-card__tag">{m}</span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Bottom CTA row */}
+            <motion.div
+              className="ie-wf-section__cta"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={VP}
+              transition={{ delay: 0.5, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="ie-wf-section__cta-text">
+                Interested in watches or furniture export? Get a quote in 48 hours.
+              </p>
+              <div className="ie-wf-section__cta-btns">
+                <ScrollLink
+                  to="contact" smooth duration={500} offset={-72}
+                  className="ie-wf-btn ie-wf-btn--primary"
+                >
+                  <FaHandshake size={16} />
+                  Get Export Quote
+                  <HiArrowRight size={15} />
+                </ScrollLink>
+                <a
+                  href="https://wa.me/917665656574?text=Hello%2C%20I%20am%20interested%20in%20export%20enquiry%20for%20Watches%20and%20Furniture."
+                  target="_blank" rel="noreferrer"
+                  className="ie-wf-btn ie-wf-btn--ghost"
+                >
+                  <FaWhatsapp size={16} />
+                  WhatsApp Us
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* ══ PRODUCT CATALOGS — DOWNLOAD PDFs ══ */}
+          <motion.div
+            className="ie-catalogs-section"
+            initial={{ opacity: 0, y: 44 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VP}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="ie-catalogs-header">
+              <span className="ie-catalogs-tag">Product Catalogs</span>
+              <h3 className="ie-catalogs-title">Download Our Export Catalogs</h3>
+              <p className="ie-catalogs-sub">
+                Browse detailed product specifications, pricing, and export information in PDF format.
+              </p>
+            </div>
+
+            {/* Info strip */}
+            <div className="ie-catalogs-info">
+              <HiDocumentText size={18} />
+              <span>All catalogs include product images, specs, export pricing & bulk order info.</span>
+            </div>
+
+            {/* Catalog cards */}
+            <div className="ie-catalogs-grid">
+              {CATALOGS.map((catalog, i) => (
+                <motion.div
+                  key={catalog.id}
+                  className={`ie-catalog-card${!catalog.available ? ' ie-catalog-card--unavailable' : ''}`}
+                  style={{ '--catalog-color': catalog.color }}
+                  initial={{ opacity: 0, y: 28, scale: 0.97 }}
+                  whileInView={{
+                    opacity: 1, y: 0, scale: 1,
+                    transition: { delay: i * 0.12, duration: 0.48, ease: [0.22, 1, 0.36, 1] },
+                  }}
+                  viewport={VP}
+                  whileHover={catalog.available ? { y: -6, transition: { duration: 0.22 } } : {}}
+                >
+                  <div className="ie-catalog-card__bar" />
+                  <div className="ie-catalog-card__icon-wrap">
+                    <catalog.Icon size={32} className="ie-catalog-card__icon" />
+                  </div>
+                  <h4 className="ie-catalog-card__title">{catalog.title}</h4>
+                  <p className="ie-catalog-card__desc">{catalog.description}</p>
+
+                  {catalog.available ? (
+                    <div className="ie-catalog-card__footer">
+                      <div className="ie-catalog-card__meta">
+                        <HiDocumentText size={13} />
+                        <span>PDF · {catalog.pdfSize}</span>
+                      </div>
+                      <motion.a
+                        href={catalog.pdfFile}
+                        download={`TREEN_${catalog.title}_Catalog.pdf`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="ie-catalog-card__btn"
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.96 }}
+                      >
+                        <HiDownload size={15} />
+                        View Products
+                      </motion.a>
+                    </div>
+                  ) : (
+                    <div className="ie-catalog-card__footer ie-catalog-card__footer--soon">
+                      <div className="ie-catalog-card__soon">
+                        <HiClock size={15} />
+                        <span>Coming Soon</span>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
           {/* ══ CTA BANNER ══ */}
           <motion.div
             className="ie-cta-banner"
@@ -368,7 +539,7 @@ export default function ImportExport() {
             <span className="ie-cta-banner__shape ie-cta-banner__shape--ring1" />
             <span className="ie-cta-banner__shape ie-cta-banner__shape--ring2" />
 
-            {/* Floating ship icon */}
+            {/* Floating crane icon */}
             <motion.div
               className="ie-cta-banner__ship"
               animate={{ x: [0, 18, 0], y: [0, -8, 0] }}
@@ -385,11 +556,11 @@ export default function ImportExport() {
                   Ready to go global?
                 </div>
                 <h3 className="ie-cta-banner__title">
-                  Partner with TREEN® for<br />International Trade
+                  Partner with TREEN® for<br />International Export
                 </h3>
                 <p className="ie-cta-banner__sub">
                   Get competitive pricing, full documentation and reliable supply for your
-                  export or raw material import requirements.
+                  export requirements.
                 </p>
                 <div className="ie-cta-banner__pills">
                   {[

@@ -71,6 +71,7 @@
 
 /* ── Desktop nav ── */
 .navbar__links {
+
   display: flex;
   align-items: center;
   gap: 2px;
@@ -78,6 +79,8 @@
 }
 
 .navbar__link {
+  background: transparent;
+  border: 0;
   padding: 8px 13px;
   color: rgba(255,255,255,0.72);
   font-size: 0.875rem;

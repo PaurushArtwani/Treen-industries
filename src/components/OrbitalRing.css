@@ -66,6 +66,31 @@
   filter: drop-shadow(0 0 14px rgba(255,255,255,0.50));
 }
 
+/* Highlighted export node - always glowing */
+.orb-node-group--highlight {
+  animation: highlightPulse 2s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(251,191,36,0.8)) drop-shadow(0 0 24px rgba(251,191,36,0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(251,191,36,1)) drop-shadow(0 0 36px rgba(251,191,36,0.6));
+  }
+}
+
+/* Export badge spinning rings */
+@keyframes exportRingSpinCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes exportRingSpinCCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
 /* ── Center overlay (HTML on top of SVG) ── */
 .orb-center {
   position: absolute;
@@ -180,6 +205,7 @@
   font-size: 0.8125rem; color: #fff;
   white-space: nowrap;
   backdrop-filter: blur(16px);
+  
   pointer-events: none; z-index: 10;
   box-shadow: 0 10px 28px rgba(0,0,0,0.55);
 }
