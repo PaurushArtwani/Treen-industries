@@ -94,7 +94,7 @@ export default function Footer() {
             <div className="footer__logo">
               <span className="footer__logo-mark">T</span>
               <div>
-                <div className="footer__logo-name">TREEN® <span>Chemicals</span></div>
+                <div className="footer__logo-name">TREEN® </div>
                 <div className="footer__logo-tagline">Fix Every Tile with TREEN®</div>
               </div>
             </div>

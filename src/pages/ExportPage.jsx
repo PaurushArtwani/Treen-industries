@@ -343,7 +343,7 @@ function ProductShowcase({ category }) {
                   </span>
                 )}
                 <motion.a
-                  href={`https://wa.me/917665656574?text=${waText}`}
+                  href={`https://wa.me/919781704277?text=${waText}`}
                   target="_blank" rel="noreferrer"
                   className="ep-sc-btn ep-sc-btn--wa"
                   whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}

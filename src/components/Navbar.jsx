@@ -89,7 +89,7 @@ export default function Navbar() {
           {/* Logo */}
           <RouterLink to="/" className="navbar__logo" onClick={closeMenu}>
             <span className="navbar__logo-mark">T</span>
-            <span className="navbar__logo-text">TREEN® <span>Chemicals</span></span>
+            <span className="navbar__logo-text">TREEN® </span>
           </RouterLink>
 
           {/* Desktop nav */}
