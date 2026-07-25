@@ -8,7 +8,7 @@ import {
 import { MdOutlineKitchen } from 'react-icons/md'
 import {
   GiWatch, GiSofa, GiMirrorMirror, GiWoodFrame,
-  GiOfficeChair, GiCargoCrane,
+  GiOfficeChair, GiCargoCrane, GiStonePath,
 } from 'react-icons/gi'
 import { TbDeviceWatch } from 'react-icons/tb'
 import { FaHandshake, FaWhatsapp } from 'react-icons/fa'
@@ -115,34 +115,45 @@ const CATEGORIES = [
     id: 'sinks',
     tag: 'Sink Collection',
     title: 'Our Sink Export Range',
-    sub: 'Premium kitchen and bathroom sinks in stainless steel, ceramic and granite — built for durability, sourced for global export.',
+    sub: 'Premium kitchen sinks in quartz and stainless steel — available in branded and non-branded variants, built for durability and global export.',
     accentColor: '#06b6d4',
     FallbackIcon: MdOutlineKitchen,
-    pdfFile: null,
-    pdfLabel: null,
+    pdfFile: '/Quartz Sink Catalogue without logo.pdf',
+    pdfLabel: 'Quartz Sink Catalogue PDF',
+    pdfFile2: '/NON-BRAND SINK.pdf',
+    pdfLabel2: 'Non-Brand Sink Catalogue PDF',
     waText: 'Hello%2C%20I%20am%20interested%20in%20the%20Sink%20collection%20for%20export.',
-    available: false,
+    available: true,
     cards: [
       {
-        image: '/sink-1.jpg',
-        name: 'Stainless Steel Kitchen Sinks',
-        description: 'Single and double bowl stainless steel sinks with anti-scratch coating. Ideal for residential kitchens and hotel projects.',
-        badge: 'Popular', badgeColor: '#06b6d4',
-        tags: ['Stainless Steel', 'Anti-Scratch', 'Kitchen'],
+        image: './S1.png',
+        name: 'Quartz Kitchen Sinks',
+        description: 'Premium quartz composite kitchen sinks with superior heat and scratch resistance. Available in multiple colours and bowl configurations for residential and hospitality projects.',
+        badge: 'Best Seller', badgeColor: '#06b6d4',
+        tags: ['Quartz Composite', 'Heat Resistant', 'Kitchen'],
+        pdf: '/Quartz Sink Catalogue without logo.pdf',
+        pdfName: 'TREEN_Quartz_Sink_Catalog.pdf',
+        pdfLabel: 'View Products',
       },
       {
-        image: '/sink-2.jpg',
-        name: 'Ceramic Bathroom Basins',
-        description: 'Wall-mounted and countertop ceramic basins in white and designer colours. Perfect for bathroom renovation projects.',
-        badge: 'New', badgeColor: '#f5a623',
-        tags: ['Ceramic', 'Wall Mounted', 'Bathroom'],
+      image: './S2.png',
+        name: 'Non-Brand Kitchen Sinks',
+        description: 'High-quality stainless steel kitchen sinks without branding — perfect for OEM buyers, private-label projects and bulk wholesale orders at competitive pricing.',
+        badge: 'OEM Ready', badgeColor: '#f5a623',
+        tags: ['Stainless Steel', 'Private Label', 'Bulk Orders'],
+        pdf: '/NON-BRAND SINK.pdf',
+        pdfName: 'TREEN_NonBrand_Sink_Catalog.pdf',
+        pdfLabel: 'View Products',
       },
       {
-        image: '/sink-3.jpg',
-        name: 'Granite Composite Sinks',
-        description: 'Heavy-duty granite composite sinks with heat and scratch resistance. Premium choice for luxury kitchen installations.',
-        badge: 'Premium', badgeColor: '#a855f7',
-        tags: ['Granite', 'Heat Resistant', 'Luxury'],
+       image: './S3.png',
+        name: 'Custom & Wholesale Sinks',
+        description: 'Custom bowl sizes, drain placements and finish options available for large orders. Full export documentation, competitive MOQs and global shipping support.',
+        badge: 'Export Ready', badgeColor: '#a855f7',
+        tags: ['Custom Sizes', 'Wholesale', 'Export Docs'],
+        pdf: '/Quartz Sink Catalogue without logo.pdf',
+        pdfName: 'TREEN_Sink_Export_Catalog.pdf',
+        pdfLabel: 'View Products',
       },
     ],
   },
@@ -153,31 +164,87 @@ const CATEGORIES = [
     sub: 'Decorative, LED-illuminated and frameless mirrors for residential and commercial spaces — custom shapes and sizes available on request.',
     accentColor: '#22c55e',
     FallbackIcon: GiMirrorMirror,
-    pdfFile: null,
-    pdfLabel: null,
+    pdfFile: '/Mirror.pdf',
+    pdfLabel: 'Mirror Catalog PDF',
     waText: 'Hello%2C%20I%20am%20interested%20in%20the%20Mirror%20collection%20for%20export.',
-    available: false,
+    available: true,
     cards: [
       {
-        image: '/mirror-1.jpg',
-        name: 'LED Backlit Mirrors',
-        description: 'Modern LED backlit mirrors with touch-dimmer control. Perfect for bathrooms, vanity spaces and hospitality projects.',
+        image: './MI1.jpeg',
+        name: 'Fancy Mirrors',
+        description: 'Elegant and ornate fancy mirrors with premium finishes — perfect for living rooms, hotels, retail spaces and luxury interiors.',
         badge: 'Trending', badgeColor: '#22c55e',
-        tags: ['LED', 'Touch Dimmer', 'Bathroom'],
+        tags: ['Fancy', 'Premium Finish', 'Luxury Interiors'],
+        pdf: '/Mirror.pdf',
+        pdfName: 'TREEN_Mirror_Catalog.pdf',
+        pdfLabel: 'View Products',
+        containImg: true,
       },
       {
-        image: '/mirror-2.jpg',
+        image: './MI2.jpeg',
         name: 'Decorative Wall Mirrors',
         description: 'Ornate and contemporary framed mirrors for living rooms and lobbies. Available in gold, silver and black frame finishes.',
         badge: 'Popular', badgeColor: '#f5a623',
         tags: ['Decorative', 'Gold Frame', 'Wall Mount'],
+        pdf: '/Mirror.pdf',
+        pdfName: 'TREEN_Mirror_Catalog.pdf',
+        pdfLabel: 'View Products',
+        containImg: true,
       },
       {
-        image: '/mirror-3.jpg',
+        image: './MI3.jpeg',
         name: 'Frameless & Full-Length',
         description: 'Sleek frameless mirrors and full-length dressing mirrors for retail stores, gyms and high-end residential spaces.',
         badge: 'New', badgeColor: '#06b6d4',
         tags: ['Frameless', 'Full-Length', 'Commercial'],
+        pdf: '/Mirror.pdf',
+        pdfName: 'TREEN_Mirror_Catalog.pdf',
+        pdfLabel: 'View Products',
+        containImg: true,
+      },
+    ],
+  },
+  {
+    id: 'marble-granite',
+    tag: 'Marble & Granite Collection',
+    title: 'Our Marble & Granite Export Range',
+    sub: 'Premium natural marble and granite slabs, tiles and cut-to-size pieces — sourced from top quarries and exported globally with full certification.',
+    accentColor: '#be9b6e',
+    FallbackIcon: GiStonePath,
+    pdfFile: '/Marble.pdf',
+    pdfLabel: 'Marble & Granite Catalog PDF',
+    waText: 'Hello%2C%20I%20am%20interested%20in%20the%20Marble%20%26%20Granite%20collection%20for%20export.',
+    available: true,
+    cards: [
+      {
+        image: './M1.png',
+        name: 'Natural Marble Slabs & Tiles',
+        description: 'Premium natural marble in polished, honed and brushed finishes. Available in a wide range of colours and veining patterns — ideal for flooring, cladding and countertops.',
+        badge: 'Premium', badgeColor: '#be9b6e',
+        tags: ['Natural Marble', 'Polished Finish', 'Flooring'],
+        pdf: '/Marble.pdf',
+        pdfName: 'TREEN_Marble_Catalog.pdf',
+        pdfLabel: 'View Products',
+      },
+      {
+       image: './M2.png',
+        name: 'Granite Slabs & Cut-to-Size',
+        description: 'High-durability granite slabs and tiles for kitchens, bathrooms and exterior cladding. Heat and scratch resistant with exceptional longevity for commercial and residential use.',
+        badge: 'Best Seller', badgeColor: '#a855f7',
+        tags: ['Granite', 'Heat Resistant', 'Commercial'],
+        pdf: '/Marble.pdf',
+        pdfName: 'TREEN_Granite_Catalog.pdf',
+        pdfLabel: 'View Products',
+      },
+      {
+        image: './M3.png',
+        name: 'Custom & Bulk Stone Orders',
+        description: 'Custom cut-to-size slabs, profiled edges and bulk stone orders for builders, architects and interior designers. Competitive MOQs with full export documentation.',
+        badge: 'Export Ready', badgeColor: '#22c55e',
+        tags: ['Custom Cut', 'Bulk Orders', 'Architects'],
+        pdf: '/Marble.pdf',
+        pdfName: 'TREEN_Stone_Export_Catalog.pdf',
+        pdfLabel: 'View Products',
       },
     ],
   },
@@ -212,21 +279,31 @@ function ProductShowcase({ category }) {
             whileHover={{ y: -8, transition: { duration: 0.24 } }}
           >
             {/* Image */}
-            <div className="ep-sc-card__img-wrap">
-              <img
-                src={card.image}
-                alt={card.name}
-                className="ep-sc-card__img"
-                onError={(e) => {
-                  // e.currentTarget.style.display = 'none'
-                  e.currentTarget.nextSibling.style.display = 'flex'
-                }}
-              />
-              {/* Placeholder */}
-              <div className="ep-sc-card__placeholder" style={{ display: 'none', '--acc': accentColor }}>
-                <FallbackIcon size={52} className="ep-sc-card__ph-icon" />
-                <span className="ep-sc-card__ph-text">Image Coming Soon</span>
-              </div>
+            <div className={`ep-sc-card__img-wrap${card.containImg ? ' ep-sc-card__img-wrap--contain' : ''}`}>
+              {card.image ? (
+                <>
+                  <img
+                    src={card.image}
+                    alt={card.name}
+                    className="ep-sc-card__img"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none'
+                      e.currentTarget.nextSibling.style.display = 'flex'
+                    }}
+                  />
+                  {/* Placeholder fallback on error */}
+                  <div className="ep-sc-card__placeholder" style={{ display: 'none', '--acc': accentColor }}>
+                    <FallbackIcon size={52} className="ep-sc-card__ph-icon" />
+                    <span className="ep-sc-card__ph-text">Image Coming Soon</span>
+                  </div>
+                </>
+              ) : (
+                /* No image provided — show placeholder immediately */
+                <div className="ep-sc-card__placeholder" style={{ display: 'flex', '--acc': accentColor }}>
+                  <FallbackIcon size={52} className="ep-sc-card__ph-icon" />
+                  <span className="ep-sc-card__ph-text">Image Coming Soon</span>
+                </div>
+              )}
               {/* Badge */}
               <span className="ep-sc-card__badge" style={{ background: card.badgeColor }}>
                 {card.badge}
@@ -246,17 +323,18 @@ function ProductShowcase({ category }) {
 
               {/* Buttons */}
               <div className="ep-sc-card__actions">
-                {available && pdfFile ? (
+                {/* Per-card PDF takes priority, then section-level PDF */}
+                {available && (card.pdf || pdfFile) ? (
                   <motion.a
-                    href={pdfFile}
-                    download={`TREEN_${id}_Catalog.pdf`}
+                    href={card.pdf || pdfFile}
+                    download={card.pdfName || `TREEN_${id}_Catalog.pdf`}
                     target="_blank" rel="noreferrer"
                     className="ep-sc-btn ep-sc-btn--primary"
                     style={{ '--acc': accentColor }}
                     whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                   >
                     <HiDownload size={16} />
-                    View Products
+                    {card.pdfLabel || 'View Products'}
                   </motion.a>
                 ) : (
                   <span className="ep-sc-btn ep-sc-btn--soon">
@@ -288,6 +366,14 @@ function ProductShowcase({ category }) {
             <a href={pdfFile} download={`TREEN_${id}_Catalog.pdf`} target="_blank" rel="noreferrer">
               {pdfLabel}
             </a>
+            {category.pdfFile2 && (
+              <>
+                &nbsp;and the&nbsp;
+                <a href={category.pdfFile2} download={`TREEN_${id}_Catalog2.pdf`} target="_blank" rel="noreferrer">
+                  {category.pdfLabel2}
+                </a>
+              </>
+            )}
           </span>
         </motion.div>
       )}
@@ -336,16 +422,17 @@ export default function ExportPage() {
             </div>
             <h1 className="ep-hero__title">Export Products <em>Worldwide</em></h1>
             <p className="ep-hero__sub">
-              Watches, Furniture, Sinks &amp; Mirrors — shipped to 10+ countries with full
+              Watches, Furniture, Sinks, Mirrors &amp; Marble/Granite — shipped to 10+ countries with full
               documentation and competitive pricing.
             </p>
             {/* Quick-jump pills */}
             <div className="ep-hero__pills">
               {[
-                { label: 'Watches',   href: '#ep-watches'   },
-                { label: 'Furniture', href: '#ep-furniture' },
-                { label: 'Sinks',     href: '#ep-sinks'     },
-                { label: 'Mirrors',   href: '#ep-mirrors'   },
+                { label: 'Watches',         href: '#ep-watches'        },
+                { label: 'Furniture',       href: '#ep-furniture'      },
+                { label: 'Sinks',           href: '#ep-sinks'          },
+                { label: 'Mirrors',         href: '#ep-mirrors'        },
+                { label: 'Marble & Granite',href: '#ep-marble-granite' },
               ].map((p, i) => (
                 <a key={i} href={p.href} className="ep-hero__pill">{p.label}</a>
               ))}

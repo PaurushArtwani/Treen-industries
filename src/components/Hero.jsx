@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
 import { HiArrowRight, HiChevronLeft, HiChevronRight, HiPhone, HiDownload, HiClock } from 'react-icons/hi'
 import { MdVerified, MdLocalShipping, MdSupportAgent, MdStar, MdOutlineKitchen } from 'react-icons/md'
-import { GiWatch, GiSofa, GiMirrorMirror } from 'react-icons/gi'
+import { GiWatch, GiSofa, GiMirrorMirror, GiStonePath } from 'react-icons/gi'
 import { BsGlobeEuropeAfrica } from 'react-icons/bs'
 import { FaWhatsapp } from 'react-icons/fa'
 import OrbitalRing from './OrbitalRing'
@@ -144,18 +144,26 @@ const EXPORT_CATS = [
   {
     Icon: MdOutlineKitchen,
     label: 'Sinks',
-    sub: 'Kitchen & Bath',
+    sub: 'Quartz & Steel',
     color: '#06b6d4',
-    badge: 'Coming Soon',
-    badgeOk: false,
+    badge: 'PDF Ready',
+    badgeOk: true,
   },
   {
     Icon: GiMirrorMirror,
     label: 'Mirrors',
-    sub: 'LED & Decorative',
+    sub: 'Fancy & Decorative',
     color: '#22c55e',
-    badge: 'Coming Soon',
-    badgeOk: false,
+    badge: 'PDF Ready',
+    badgeOk: true,
+  },
+  {
+    Icon: GiStonePath,
+    label: 'Marble & Granite',
+    sub: 'Slabs & Tiles',
+    color: '#be9b6e',
+    badge: 'PDF Ready',
+    badgeOk: true,
   },
 ]
 
@@ -215,7 +223,7 @@ function ExportVisual({ accentColor }) {
           { val: '10+', lbl: 'Markets' },
           { val: 'FOB', lbl: 'Morbi Port' },
           { val: '48h', lbl: 'Quote' },
-          { val: '4',   lbl: 'Categories' },
+          { val: '5',   lbl: 'Categories' },
         ].map((s, i) => (
           <React.Fragment key={i}>
             <div className="hev-stat">

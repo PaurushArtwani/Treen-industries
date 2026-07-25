@@ -18,7 +18,7 @@ import {
   TbFileInvoice, TbPackage, TbMessage2,
   TbFlask2, TbDeviceWatch,
 } from 'react-icons/tb'
-import { GiCargoCrane, GiWatch, GiWoodFrame, GiSofa, GiOfficeChair, GiMirrorMirror } from 'react-icons/gi'
+import { GiCargoCrane, GiWatch, GiWoodFrame, GiSofa, GiOfficeChair, GiMirrorMirror, GiStonePath } from 'react-icons/gi'
 import { BsGlobeEuropeAfrica, BsBoxSeam } from 'react-icons/bs'
 import SectionBanner from './SectionBanner'
 import { VP } from './AnimationUtils'
@@ -111,21 +111,31 @@ const CATALOGS = [
     id: 'sinks',
     Icon: MdOutlineKitchen,
     title: 'Sinks',
-    description: 'Premium kitchen and bathroom sinks in stainless steel, ceramic, and granite. Wholesale catalog coming soon.',
-    pdfFile: null,
+    description: 'Premium quartz and stainless steel kitchen sinks — available in branded (Quartz) and non-branded variants for wholesale and OEM buyers.',
+    pdfFile: '/Quartz Sink Catalogue without logo.pdf',
     pdfSize: null,
     color: '#06b6d4',
-    available: false,
+    available: true,
   },
   {
     id: 'mirrors',
     Icon: GiMirrorMirror,
     title: 'Mirrors',
-    description: 'Decorative and functional mirrors for residential and commercial projects. LED-illuminated and frameless options.',
-    pdfFile: null,
+    description: 'Fancy, decorative and frameless mirrors for residential and commercial projects. Premium finishes for luxury interiors.',
+    pdfFile: '/Mirror.pdf',
     pdfSize: null,
     color: '#22c55e',
-    available: false,
+    available: true,
+  },
+  {
+    id: 'marble-granite',
+    Icon: GiStonePath,
+    title: 'Marble & Granite',
+    description: 'Premium natural marble and granite slabs, tiles and cut-to-size pieces sourced from top quarries for global export.',
+    pdfFile: '/Marble.pdf',
+    pdfSize: null,
+    color: '#be9b6e',
+    available: true,
   },
 ]
 
