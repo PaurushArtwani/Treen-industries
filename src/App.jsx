@@ -35,7 +35,7 @@ function HomePage() {
       <Suspense fallback={<SectionFallback />}><ProductEcosystem /></Suspense>
       <Suspense fallback={<SectionFallback />}><About /></Suspense>
       <Suspense fallback={<SectionFallback />}><WhyUs /></Suspense>
-      <Suspense fallback={<SectionFallback />}><ImportExport /></Suspense>
+      {/* <Suspense fallback={<SectionFallback />}><ImportExport /></Suspense> */}
       <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
     </main>
   )
