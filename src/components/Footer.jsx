@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link as ScrollLink } from 'react-scroll'
+import { Link as RouterLink } from 'react-router-dom'
 import { HiPhone, HiMail, HiLocationMarker, HiArrowRight } from 'react-icons/hi'
 import { MdWhatsapp } from 'react-icons/md'
 import { FaLinkedin, FaInstagram, FaFacebook } from 'react-icons/fa'
@@ -164,6 +165,10 @@ export default function Footer() {
                   {link.label}
                 </ScrollLink>
               ))}
+              <RouterLink to="/export" className="footer__nav-link">
+                <span className="footer__nav-arrow">›</span>
+                Export
+              </RouterLink>
             </nav>
           </div>
 

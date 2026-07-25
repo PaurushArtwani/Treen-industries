@@ -269,11 +269,29 @@ display: none;
   flex-direction: column;
   gap: 18px;
   padding: 28px 24px 24px;
-  background: linear-gradient(145deg, rgba(15,36,96,0.35) 0%, rgba(4,12,30,0.60) 100%);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.45);
+  background: linear-gradient(145deg, rgba(15,36,96,0.50) 0%, rgba(4,12,30,0.75) 100%);
+  border: 1.5px solid rgba(245,166,35,0.35);
+  border-radius: 20px;
+  backdrop-filter: blur(28px);
+  box-shadow: 0 12px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,166,35,0.10), inset 0 1px 0 rgba(255,255,255,0.08);
+  position: relative;
+}
+
+/* Animated glow ring around the whole widget */
+.hero-export-visual::before {
+  content: '';
+  position: absolute; inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(245,166,35,0.5), rgba(6,182,212,0.3), rgba(168,85,247,0.3), rgba(245,166,35,0.5));
+  background-size: 300% 300%;
+  animation: hev-border-spin 6s linear infinite;
+  z-index: -1;
+  opacity: 0.6;
+}
+@keyframes hev-border-spin {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* ── Header ── */
@@ -283,7 +301,7 @@ display: none;
   gap: 10px;
   padding-bottom: 14px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
-  font-size: 0.8125rem;
+  font-size:1.5rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: rgba(255,255,255,0.72);
@@ -301,11 +319,15 @@ display: none;
   font-weight: 600;
 }
 
-/* ── 4 Card Grid ── */
+/* ── 5 Card Grid ── */
 .hev-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 10px;
+}
+/* When there are 5 items, last one spans full width */
+.hev-grid > *:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .hev-card {
@@ -315,16 +337,17 @@ display: none;
   align-items: flex-start;
   gap: 8px;
   padding: 16px 14px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.24s ease;
 }
 .hev-card:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.22);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.32);
+  background: color-mix(in srgb, var(--hev-acc) 12%, rgba(255,255,255,0.06));
+  border-color: var(--hev-acc);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.36), 0 0 18px color-mix(in srgb, var(--hev-acc) 20%, transparent);
+  transform: translateY(-4px);
 }
 
 .hev-card__icon-wrap {
@@ -375,9 +398,10 @@ display: none;
   line-height: 1;
 }
 .hev-card__badge--ok {
-  background: rgba(34,197,94,0.14);
+  background: rgba(34,197,94,0.18);
   color: #4ade80;
-  border: 1px solid rgba(34,197,94,0.28);
+  border: 1px solid rgba(34,197,94,0.42);
+  box-shadow: 0 0 10px rgba(34,197,94,0.20);
 }
 .hev-card__badge--soon {
   background: rgba(245,166,35,0.12);
@@ -443,10 +467,12 @@ display: none;
 }
 .hev-btn--primary {
   color: #060f22;
+  font-weight: 800;
 }
 .hev-btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.30);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.40);
+  filter: brightness(1.08);
 }
 .hev-btn--wa {
   background: rgba(37,211,102,0.11);

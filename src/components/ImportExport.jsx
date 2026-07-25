@@ -2,6 +2,7 @@ import React from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
+import { Link as RouterLink } from 'react-router-dom'
 import {
   HiArrowRight, HiDocumentText,
   HiCheckCircle, HiPhone, HiDownload, HiClock,
@@ -181,6 +182,121 @@ export default function Export() {
 
   return (
     <section id="import-export" className="ie-section">
+
+      {/* ══ EXPORT HERO HIGHLIGHT BANNER ══ */}
+      <div className="ie-export-hero">
+        <div className="ie-export-hero__bg" />
+        <div className="ie-export-hero__grid" />
+        <div className="ie-export-hero__glow ie-export-hero__glow--1" />
+        <div className="ie-export-hero__glow ie-export-hero__glow--2" />
+        <div className="ie-export-hero__glow ie-export-hero__glow--3" />
+        <motion.div
+          className="ie-export-hero__deco"
+          animate={{ x: [0, 24, 0], y: [0, -14, 0], rotate: [0, 6, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <GiCargoCrane size={260} />
+        </motion.div>
+
+        <div className="container ie-export-hero__inner">
+          <motion.div
+            className="ie-export-hero__content"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="ie-export-hero__eyebrow">
+              <span className="ie-export-hero__eyebrow-dot" />
+              <BsGlobeEuropeAfrica size={15} />
+              TREEN® Global Exports — 10+ Countries
+            </div>
+
+            <h2 className="ie-export-hero__title">
+              We Export <em>Worldwide</em>
+            </h2>
+            <p className="ie-export-hero__sub">
+              Watches · Furniture · Sinks · Mirrors · Marble &amp; Granite — shipped globally with full
+              documentation, competitive FOB pricing and 48h quote turnaround.
+            </p>
+
+            {/* Category pills */}
+            <div className="ie-export-hero__cats">
+              {[
+                { Icon: GiWatch,          label: 'Watches',         color: '#f97316' },
+                { Icon: GiSofa,           label: 'Furniture',       color: '#a855f7' },
+                { Icon: MdOutlineKitchen, label: 'Sinks',           color: '#06b6d4' },
+                { Icon: GiMirrorMirror,   label: 'Mirrors',         color: '#22c55e' },
+                { Icon: GiStonePath,      label: 'Marble & Granite',color: '#be9b6e' },
+              ].map((c, i) => (
+                <motion.span
+                  key={i}
+                  className="ie-export-hero__cat"
+                  style={{ '--cat-color': c.color }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 + i * 0.08, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                >
+                  <c.Icon size={15} />
+                  {c.label}
+                </motion.span>
+              ))}
+            </div>
+
+            <div className="ie-export-hero__ctas">
+              <RouterLink to="/export" className="ie-export-hero__btn ie-export-hero__btn--primary">
+                <HiArrowRight size={16} />
+                View Full Export Catalog
+              </RouterLink>
+              <a
+                href="https://wa.me/917665656574?text=Hello%2C%20I%20am%20interested%20in%20export%20enquiry."
+                target="_blank" rel="noreferrer"
+                className="ie-export-hero__btn ie-export-hero__btn--wa"
+              >
+                <FaWhatsapp size={16} />
+                Enquire on WhatsApp
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right side stats grid */}
+          <motion.div
+            className="ie-export-hero__stats-panel"
+            initial={{ opacity: 0, x: 32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {[
+              { val: '10+',  lbl: 'Export Markets',   Icon: BsGlobeEuropeAfrica, color: '#06b6d4' },
+              { val: 'FOB',  lbl: 'Morbi Port',        Icon: FaShip,              color: '#f5a623' },
+              { val: '5',    lbl: 'Categories',        Icon: BsBoxSeam,           color: '#a855f7' },
+              { val: '48h',  lbl: 'Quote Turnaround',  Icon: TbMessage2,          color: '#22c55e' },
+              { val: 'ISO',  lbl: 'Certified',         Icon: TbCertificate,       color: '#f97316' },
+              { val: 'PDF',  lbl: 'Catalogs Ready',    Icon: HiDocumentText,      color: '#be9b6e' },
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                className="ie-export-hero__stat"
+                style={{ '--stat-color': s.color }}
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + i * 0.07, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              >
+                <div className="ie-export-hero__stat-icon">
+                  <s.Icon size={20} />
+                </div>
+                <span className="ie-export-hero__stat-val">{s.val}</span>
+                <span className="ie-export-hero__stat-lbl">{s.lbl}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
 
       <SectionBanner
         tag="Export"
@@ -468,7 +584,7 @@ export default function Export() {
           >
             <div className="ie-catalogs-header">
               <span className="ie-catalogs-tag">Product Catalogs</span>
-              <h3 className="ie-catalogs-title">Download Our Export Catalogs</h3>
+              <h3 className="ie-catalogs-title">Export Catalogs</h3>
               <p className="ie-catalogs-sub">
                 Browse detailed product specifications, pricing, and export information in PDF format.
               </p>
@@ -504,22 +620,17 @@ export default function Export() {
 
                   {catalog.available ? (
                     <div className="ie-catalog-card__footer">
-                      <div className="ie-catalog-card__meta">
+                      {/* <div className="ie-catalog-card__meta">
                         <HiDocumentText size={13} />
                         <span>PDF · {catalog.pdfSize}</span>
-                      </div>
-                      <motion.a
-                        href={catalog.pdfFile}
-                        download={`TREEN_${catalog.title}_Catalog.pdf`}
-                        target="_blank"
-                        rel="noreferrer"
+                      </div> */}
+                      <RouterLink
+                        to="/export"
                         className="ie-catalog-card__btn"
-                        whileHover={{ scale: 1.04 }}
-                        whileTap={{ scale: 0.96 }}
                       >
-                        <HiDownload size={15} />
-                        View Products
-                      </motion.a>
+                        <HiArrowRight size={15} />
+                        View More
+                      </RouterLink>
                     </div>
                   ) : (
                     <div className="ie-catalog-card__footer ie-catalog-card__footer--soon">
