@@ -23,12 +23,15 @@
 .ep-hero__glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
 .ep-hero__glow--1 { width:420px;height:420px;top:-140px;right:-60px; background:radial-gradient(circle,rgba(249,115,22,0.20) 0%,transparent 70%); animation:ep-drift 12s ease-in-out infinite; }
 .ep-hero__glow--2 { width:260px;height:260px;bottom:-80px;left:12%; background:radial-gradient(circle,rgba(6,182,212,0.14) 0%,transparent 70%); animation:ep-drift 18s ease-in-out infinite reverse; }
+.ep-hero__glow--3 { display: none; }
 @keyframes ep-drift { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-16px)} }
 
 .ep-hero__deco {
   position: absolute; bottom: -30px; right: 20px;
   color: rgba(255,255,255,0.04); pointer-events: none; z-index: 0;
 }
+.ep-hero__base { display: none; }
+.ep-hero__img-deco { display: none; }
 .ep-hero__inner { position: relative; z-index: 2; max-width: 700px; }
 
 .ep-hero__back {
@@ -56,8 +59,8 @@
 }
 .ep-hero__title em {
   font-style: normal;
-  background: linear-gradient(135deg,#f5a623,#f97316);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  background: linear-gradient(135deg, #f5a623, #f97316);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .ep-hero__sub {
   font-size: 1rem; color: rgba(255,255,255,0.52); line-height: 1.75; margin-bottom: 24px;
@@ -298,4 +301,184 @@
   .ep-showcase__grid { grid-template-columns: 1fr; }
   .ep-sc-card__actions { flex-direction: column; }
   .ep-body { padding: 36px 0 64px; }
+}
+
+/* ════════════════════════════════════════
+   TILE ADHESIVES SECTION
+   ════════════════════════════════════════ */
+
+/* 3-column grid, wraps to 2 rows for 6 items */
+.ep-ta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* ── Card shell ── */
+.ep-ta-card {
+  background: #fff;
+  border: 1.5px solid #eef0f4;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transition: border-color 0.28s, box-shadow 0.28s;
+}
+.ep-ta-card:hover {
+  box-shadow: 0 18px 52px rgba(0,0,0,0.13);
+}
+
+/* ── Dark image area ── */
+.ep-ta-card__img-wrap {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ep-ta-card__img {
+  height: 155px;
+  width: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.45));
+  transition: transform 0.4s ease;
+}
+.ep-ta-card:hover .ep-ta-card__img {
+  transform: scale(1.06) translateY(-4px);
+}
+
+/* Radial glow behind product image */
+.ep-ta-card__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Badge — top right */
+.ep-ta-card__badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.30);
+}
+
+/* Tagline + name — bottom left overlay */
+.ep-ta-card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 10px 16px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.ep-ta-card__cat {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.ep-ta-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+/* ── White body ── */
+.ep-ta-card__body {
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.ep-ta-card__desc {
+  font-size: 0.8375rem;
+  color: var(--color-gray-400, #64748b);
+  line-height: 1.72;
+}
+
+/* Feature bullet list */
+.ep-ta-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ep-ta-card__feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--color-navy, #0f172a);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.ep-ta-card__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Enquire Now button */
+.ep-ta-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  text-decoration: none;
+  color: var(--color-navy, #0f172a);
+  background: #f3f4f6;
+  border: 1.5px solid #e5e7eb;
+  transition: background 0.22s, border-color 0.22s, color 0.22s, transform 0.2s;
+}
+.ep-ta-card__btn:hover {
+  background: var(--ta-acc, #f5a623);
+  border-color: var(--ta-acc, #f5a623);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+}
+.ep-ta-card__btn svg {
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .ep-ta-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+}
+@media (max-width: 560px) {
+  .ep-ta-grid { grid-template-columns: 1fr; }
 }

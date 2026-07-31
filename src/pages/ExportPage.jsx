@@ -7,11 +7,10 @@ import {
 } from 'react-icons/hi'
 import { MdOutlineKitchen } from 'react-icons/md'
 import {
-  GiWatch, GiSofa, GiMirrorMirror, GiWoodFrame,
-  GiOfficeChair, GiCargoCrane, GiStonePath,
+  GiWatch, GiSofa, GiMirrorMirror,
+  GiCargoCrane, GiStonePath,
 } from 'react-icons/gi'
-import { TbDeviceWatch } from 'react-icons/tb'
-import { FaHandshake, FaWhatsapp } from 'react-icons/fa'
+import { FaWhatsapp } from 'react-icons/fa'
 import { BsGlobeEuropeAfrica } from 'react-icons/bs'
 import './ExportPage.css'
 
@@ -33,6 +32,172 @@ const cardIn = (i, base = 0.1) => ({
   },
   viewport: VP,
 })
+
+/* ══════════════════════════════════════
+   TILE ADHESIVES — 6 product cards
+══════════════════════════════════════ */
+const TILE_ADHESIVES = [
+  {
+    name: 'COPPER',
+    tagline: 'TILE ADHESIVES',
+    description: 'Bagged cementitious polymer-based powder containing Portland cement and silica sand. Mixed with water for installing small and medium size ceramic floor tiles and vitrified floor tiles up to 600×600 mm in interior areas.',
+    features: ['Internal floor applications', 'Pack size: 20 Kg', 'Bed thickness up to 12 mm', 'Single component — just add water', 'Coverage: 25–35 sq ft / 20 kg bag'],
+    image: './Copper.png',
+    gradient: 'linear-gradient(145deg, #0a5078 0%, #063348 60%, #041e30 100%)',
+    accentColor: '#00bcd4',
+    badge: 'ENTRY RANGE',
+    badgeBg: 'linear-gradient(135deg,#00bcd4,#0097a7)',
+  },
+  {
+    name: 'PREMIER',
+    tagline: 'TILE ADHESIVES',
+    description: 'A smooth and creamy polymer-based adhesive for installing small to medium format (12"×18" to 600×600 mm) ceramic/vitrified wall and floor tiles, also tile on tile. Ideal for interior floor and ceramic wall applications.',
+    features: ['Internal floor & ceramic wall', 'Pack size: 20 Kg', 'Bed thickness up to 12 mm', 'Economical & easy to use', 'Coverage: 25–35 sq ft / 20 kg bag'],
+    image: './premier.png',
+    gradient: 'linear-gradient(145deg, #1a237e 0%, #0d1657 60%, #090f3e 100%)',
+    accentColor: '#5c6bc0',
+    badge: 'POPULAR',
+    badgeBg: 'linear-gradient(135deg,#5c6bc0,#3949ab)',
+  },
+  {
+    name: 'CLASSIC',
+    tagline: 'TILE ADHESIVES',
+    description: 'A smooth creamy polymer-based adhesive for installing small to large format (12"×18" to 800×1600 mm) ceramic/vitrified wall and floor tiles, also tile on tile. Designed for internal wall and floor applications.',
+    features: ['Internal floor, ceramic & vitrified wall', 'Pack size: 20 Kg', 'Bed thickness up to 12 mm', 'Non-shrink formula', 'Coverage: 25–35 sq ft / 20 kg bag'],
+    image: './classic.png',
+    gradient: 'linear-gradient(145deg, #4a2500 0%, #2d1600 60%, #1e0f00 100%)',
+    accentColor: '#f57c00',
+    badge: 'BESTSELLER',
+    badgeBg: 'linear-gradient(135deg,#f59e0b,#d97706)',
+  },
+  {
+    name: 'CLASSIC WHITE',
+    tagline: 'TILE ADHESIVES',
+    description: 'A smooth creamy polymer-based adhesive for installing small to large format (12"×18" to 800×1600 mm) ceramic/vitrified wall and floor tiles, also tile on tile. White variant for light-coloured tiles and marble.',
+    features: ['Internal floor, ceramic & vitrified wall', 'White colour — ideal for marble', 'Pack size: 20 Kg', 'Bed thickness up to 12 mm', 'Single component — just add water'],
+    image: './classicWhite.png',
+    gradient: 'linear-gradient(145deg, #4a0066 0%, #2d0040 60%, #1e0030 100%)',
+    accentColor: '#ab47bc',
+    badge: null,
+    badgeBg: null,
+  },
+  {
+    name: 'CLASSIC PLUS WHITE',
+    tagline: 'TILE ADHESIVES',
+    description: 'A multipurpose high polymer-modified adhesive for interior and exterior installation of ceramic tiles, large format vitrified tiles, stones, quarry tiles, marble & granite, glass mosaic tiles, paver & bricks.',
+    features: ['Interior & exterior applications', 'Superior bond strength', 'High performance in all weather', 'Pack size: 20 Kg', 'Bed thickness up to 12 mm'],
+    image: './classicPlusWhite.png',
+    gradient: 'linear-gradient(145deg, #880e4f 0%, #560027 60%, #3d001c 100%)',
+    accentColor: '#e91e63',
+    badge: 'MARBLE & STONE',
+    badgeBg: 'linear-gradient(135deg,#e91e63,#c2185b)',
+  },
+  {
+    name: 'ULTRA GREY',
+    tagline: 'TILE ADHESIVES',
+    description: 'A multipurpose high polymer-modified adhesive for interior and exterior installation of ceramic tiles, large format vitrified tiles, stones, quarry tiles, marble & granite, glass mosaic tiles, paver & bricks. Polymer-modified super flexible adhesive with superior bond strength.',
+    features: ['Interior & exterior applications', 'Super flexible with superior bond', 'High performance in all weather', 'Pack size: 20 Kg', 'Bed thickness up to 12 mm'],
+    image: './ultraGrey.png',
+    gradient: 'linear-gradient(145deg, #1b5e20 0%, #0d3510 60%, #082408 100%)',
+    accentColor: '#43a047',
+    badge: 'HEAVY DUTY',
+    badgeBg: 'linear-gradient(135deg,#43a047,#2e7d32)',
+  },
+]
+
+const WA_ADHESIVE = 'Hello%2C%20I%20am%20interested%20in%20TREEN%20Tile%20Adhesives%20for%20export.'
+
+function TileAdhesivesSection() {
+  return (
+    <section className="ep-showcase ep-ta-section" id="ep-tile-adhesives">
+      {/* Header */}
+      <motion.div className="ep-showcase__header" {...fadeUp(0)}>
+        <span className="ep-showcase__tag" style={{ '--acc': '#f5a623' }}>
+          Construction Chemicals
+        </span>
+        <h2 className="ep-showcase__title">Tile Adhesives Export Range</h2>
+        <p className="ep-showcase__sub">
+          ISO-certified TREEN® tile adhesives — 6 variants for every application, from entry-range
+          to heavy-duty. Bulk export with full documentation.
+        </p>
+      </motion.div>
+
+      {/* 6 cards — 3 per row */}
+      <div className="ep-ta-grid">
+        {TILE_ADHESIVES.map((p, i) => (
+          <motion.div
+            key={p.name}
+            className="ep-ta-card"
+            {...cardIn(i, 0.09)}
+            whileHover={{ y: -8, transition: { duration: 0.24 } }}
+          >
+            {/* Dark image area */}
+            <div className="ep-ta-card__img-wrap" style={{ background: p.gradient }}>
+              <img src={p.image} alt={p.name} className="ep-ta-card__img" />
+              {/* Glow blob */}
+              <div
+                className="ep-ta-card__glow"
+                style={{ background: `radial-gradient(circle, ${p.accentColor}55 0%, transparent 65%)` }}
+              />
+              {/* Badge */}
+              {p.badge && (
+                <span
+                  className="ep-ta-card__badge"
+                  style={{ background: p.badgeBg }}
+                >
+                  {p.badge}
+                </span>
+              )}
+              {/* Tagline + name overlay */}
+              <div className="ep-ta-card__overlay">
+                <span className="ep-ta-card__cat">{p.tagline}</span>
+                <span className="ep-ta-card__name">{p.name}</span>
+              </div>
+            </div>
+
+            {/* White body */}
+            <div className="ep-ta-card__body">
+              <p className="ep-ta-card__desc">{p.description}</p>
+              <ul className="ep-ta-card__features">
+                {p.features.map((f, j) => (
+                  <li key={j} className="ep-ta-card__feature" style={{ '--ta-acc': p.accentColor }}>
+                    <span className="ep-ta-card__dot" style={{ background: p.accentColor }} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={`https://wa.me/919781704277?text=${WA_ADHESIVE}`}
+                target="_blank"
+                rel="noreferrer"
+                className="ep-ta-card__btn"
+                style={{ '--ta-acc': p.accentColor }}
+              >
+                Enquire Now
+                <HiArrowRight size={15} />
+              </a>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Footer note */}
+      <motion.div className="ep-showcase__note" style={{ '--acc': '#f5a623' }} {...fadeUp(0.3)}>
+        <HiDocumentText size={16} className="ep-showcase__note-icon" />
+        <span>
+          Full product specifications, TDS and export pricing available on request.&nbsp;
+          <a
+            href={`https://wa.me/919781704277?text=${WA_ADHESIVE}`}
+            target="_blank" rel="noreferrer"
+          >
+            WhatsApp us
+          </a>
+          &nbsp;for bulk quotes.
+        </span>
+      </motion.div>
+    </section>
+  )
+}
 
 /* ══════════════════════════════════════
    PRODUCT SHOWCASE DATA
@@ -416,7 +581,7 @@ export default function ExportPage() {
           </RouterLink>
           <motion.div {...fadeUp(0.05)}>
             <div className="ep-hero__eyebrow">
-              <span className="ep-hero__dot" />
+              <span className="ep-hero__dot"/>
               <BsGlobeEuropeAfrica size={14} />
               TREEN® Global Exports
             </div>
@@ -428,6 +593,7 @@ export default function ExportPage() {
             {/* Quick-jump pills */}
             <div className="ep-hero__pills">
               {[
+                { label: 'Tile Adhesives',  href: '#ep-tile-adhesives' },
                 { label: 'Watches',         href: '#ep-watches'        },
                 { label: 'Furniture',       href: '#ep-furniture'      },
                 { label: 'Sinks',           href: '#ep-sinks'          },
@@ -441,9 +607,10 @@ export default function ExportPage() {
         </div>
       </section>
 
-      {/* ══ BODY — 4 showcase sections ══ */}
+      {/* ══ BODY ══ */}
       <div className="ep-body">
         <div className="container">
+          <TileAdhesivesSection />
           {CATEGORIES.map((cat) => (
             <ProductShowcase key={cat.id} category={cat} />
           ))}

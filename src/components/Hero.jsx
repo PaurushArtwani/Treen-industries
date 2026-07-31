@@ -5,6 +5,7 @@ import { Link as ScrollLink } from 'react-scroll'
 import { HiArrowRight, HiChevronLeft, HiChevronRight, HiPhone, HiDownload, HiClock } from 'react-icons/hi'
 import { MdVerified, MdLocalShipping, MdSupportAgent, MdStar, MdOutlineKitchen } from 'react-icons/md'
 import { GiWatch, GiSofa, GiMirrorMirror, GiStonePath } from 'react-icons/gi'
+import { TbTrowel } from 'react-icons/tb'
 import { BsGlobeEuropeAfrica } from 'react-icons/bs'
 import { FaWhatsapp } from 'react-icons/fa'
 import OrbitalRing from './OrbitalRing'
@@ -126,44 +127,64 @@ const wordSwap = {
 /* ── Export categories shown in the hero right panel ── */
 const EXPORT_CATS = [
   {
+    Icon: TbTrowel,
+    label: 'Tile Adhesives',
+    sub: '6 Variants · ISO Certified',
+    color: '#f5a623',
+    iconAnim: {
+      animate: { rotate: [0, -15, 15, -10, 10, 0] },
+      transition: { duration: 2.4, repeat: Infinity, repeatDelay: 2.5, ease: 'easeInOut' },
+    },
+  },
+  {
     Icon: GiWatch,
     label: 'Watches',
     sub: 'Analog & Luxury',
     color: '#f97316',
-    badge: 'PDF Ready',
-    badgeOk: true,
+    iconAnim: {
+      animate: { scale: [1, 1.22, 1], rotate: [0, 8, -8, 0] },
+      transition: { duration: 2, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' },
+    },
   },
   {
     Icon: GiSofa,
     label: 'Furniture',
     sub: 'Living & Office',
     color: '#a855f7',
-    badge: 'PDF Ready',
-    badgeOk: true,
+    iconAnim: {
+      animate: { y: [0, -6, 0] },
+      transition: { duration: 1.8, repeat: Infinity, ease: 'easeInOut' },
+    },
   },
   {
     Icon: MdOutlineKitchen,
     label: 'Sinks',
     sub: 'Quartz & Steel',
     color: '#06b6d4',
-    badge: 'PDF Ready',
-    badgeOk: true,
+    iconAnim: {
+      animate: { rotateY: [0, 180, 360] },
+      transition: { duration: 2.5, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' },
+    },
   },
   {
     Icon: GiMirrorMirror,
     label: 'Mirrors',
     sub: 'Fancy & Decorative',
     color: '#22c55e',
-    badge: 'PDF Ready',
-    badgeOk: true,
+    iconAnim: {
+      animate: { scaleX: [1, -1, 1] },
+      transition: { duration: 2.2, repeat: Infinity, repeatDelay: 2.5, ease: 'easeInOut' },
+    },
   },
   {
     Icon: GiStonePath,
     label: 'Marble & Granite',
     sub: 'Slabs & Tiles',
     color: '#be9b6e',
-    badge: 'PDF Ready',
-    badgeOk: true,
+    iconAnim: {
+      animate: { scale: [1, 1.18, 1], opacity: [1, 0.7, 1] },
+      transition: { duration: 2, repeat: Infinity, repeatDelay: 1.5, ease: 'easeInOut' },
+    },
   },
 ]
 
@@ -178,13 +199,13 @@ function ExportVisual({ accentColor }) {
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
         <BsGlobeEuropeAfrica size={18} style={{ color: accentColor }} />
-        <span style={{ color: accentColor }}>TREEN® Global Exports</span>
+        <span style={{ color: accentColor ,fontSize:'22px' }} >TREEN® Global Exports</span>
         <span className="hev-header__dot" style={{ background: accentColor }} />
         <span className="hev-header__live">10+ Countries</span>
       </motion.div>
 
-      {/* 4 category cards */}
-      <div className="hev-grid">
+      {/* 6 category cards — 3 columns */}
+      <div className="hev-grid hev-grid--3">
         {EXPORT_CATS.map((cat, i) => (
           <motion.div
             key={cat.label}
@@ -192,22 +213,20 @@ function ExportVisual({ accentColor }) {
             style={{ '--hev-acc': cat.color }}
             initial={{ opacity: 0, y: 24, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 0.12 + i * 0.1, duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ y: -6, transition: { duration: 0.22 } }}
+            transition={{ delay: 0.12 + i * 0.08, duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -6, scale: 1.04, transition: { duration: 0.2 } }}
           >
-            <div className="hev-card__icon-wrap">
-              <cat.Icon size={26} className="hev-card__icon" />
-            </div>
+            <motion.div
+              className="hev-card__icon-wrap"
+              animate={cat.iconAnim.animate}
+              transition={cat.iconAnim.transition}
+            >
+              <cat.Icon size={24} className="hev-card__icon" />
+            </motion.div>
             <div className="hev-card__body">
               <span className="hev-card__label">{cat.label}</span>
               <span className="hev-card__sub">{cat.sub}</span>
             </div>
-            <span
-              className={`hev-card__badge${cat.badgeOk ? ' hev-card__badge--ok' : ' hev-card__badge--soon'}`}
-            >
-              {cat.badgeOk ? <HiDownload size={11} /> : <HiClock size={11} />}
-              {cat.badge}
-            </span>
           </motion.div>
         ))}
       </div>
@@ -223,15 +242,12 @@ function ExportVisual({ accentColor }) {
           { val: '10+', lbl: 'Markets' },
           { val: 'FOB', lbl: 'Morbi Port' },
           { val: '48h', lbl: 'Quote' },
-          { val: '5',   lbl: 'Categories' },
+          { val: '6',   lbl: 'Categories' },
         ].map((s, i) => (
-          <React.Fragment key={i}>
-            <div className="hev-stat">
-              <span className="hev-stat__val" style={{ color: accentColor }}>{s.val}</span>
-              <span className="hev-stat__lbl">{s.lbl}</span>
-            </div>
-            {i < 3 && <div className="hev-stat__sep" />}
-          </React.Fragment>
+          <div key={i} className="hev-stat">
+            <span className="hev-stat__val" style={{ color: accentColor }}>{s.val}</span>
+            <span className="hev-stat__lbl">{s.lbl}</span>
+          </div>
         ))}
       </motion.div>
 
@@ -254,7 +270,7 @@ function ExportVisual({ accentColor }) {
           View Full Catalog
         </RouterLink>
         <a
-          href="https://wa.me/917665656574?text=Hello%2C%20I%20am%20interested%20in%20export%20enquiry."
+          href="https://wa.me/919781704277?text=Hello%2C%20I%20am%20interested%20in%20export%20enquiry."
           target="_blank"
           rel="noreferrer"
           className="hev-btn hev-btn--wa"

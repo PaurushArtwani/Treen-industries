@@ -267,13 +267,13 @@ display: none;
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 28px 24px 24px;
+  gap: 12px;
+  padding: 20px 18px 18px;
   background: linear-gradient(145deg, rgba(15,36,96,0.50) 0%, rgba(4,12,30,0.75) 100%);
   border: 1.5px solid rgba(245,166,35,0.35);
   border-radius: 20px;
   backdrop-filter: blur(28px);
-  box-shadow: 0 12px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,166,35,0.10), inset 0 1px 0 rgba(255,255,255,0.08);
+  box-shadow: 0 12px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08);
   position: relative;
 }
 
@@ -298,12 +298,12 @@ display: none;
 .hev-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-bottom: 14px;
+  gap: 8px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
-  font-size:1.5rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: rgba(255,255,255,0.72);
 }
 .hev-header__dot {
@@ -319,15 +319,16 @@ display: none;
   font-weight: 600;
 }
 
-/* ── 5 Card Grid ── */
+/* ── Card Grid ── */
 .hev-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
-/* When there are 5 items, last one spans full width */
-.hev-grid > *:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
+
+/* 3-column = 6 items, no orphan override needed */
+.hev-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .hev-card {
@@ -335,30 +336,31 @@ display: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
-  padding: 16px 14px;
+  gap: 7px;
+  padding: 12px 10px;
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.24s ease;
+  transition: background 0.24s, border-color 0.24s, box-shadow 0.24s, transform 0.24s;
 }
 .hev-card:hover {
-  background: color-mix(in srgb, var(--hev-acc) 12%, rgba(255,255,255,0.06));
+  background: rgba(255,255,255,0.10);
   border-color: var(--hev-acc);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.36), 0 0 18px color-mix(in srgb, var(--hev-acc) 20%, transparent);
-  transform: translateY(-4px);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.30);
+  transform: translateY(-3px);
 }
 
 .hev-card__icon-wrap {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--hev-acc), rgba(255,255,255,0.10));
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--hev-acc);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  flex-shrink: 0;
 }
 .hev-card__icon {
   color: #fff;
@@ -368,16 +370,16 @@ display: none;
 .hev-card__body {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 .hev-card__label {
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
   font-weight: 800;
   color: #fff;
   line-height: 1.2;
 }
 .hev-card__sub {
-  font-size: 0.6875rem;
+  font-size: 0.6rem;
   color: rgba(255,255,255,0.45);
   font-weight: 500;
   line-height: 1.3;
@@ -411,76 +413,78 @@ display: none;
 
 /* ── Stats Row ── */
 .hev-stats {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 8px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 10px;
+  overflow: hidden;
 }
 .hev-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2px;
+  padding: 10px 6px;
+  border-right: 1px solid rgba(255,255,255,0.07);
 }
+.hev-stat:last-child { border-right: none; }
 .hev-stat__val {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 900;
   line-height: 1;
 }
 .hev-stat__lbl {
-  font-size: 0.625rem;
+  font-size: 0.56rem;
   color: rgba(255,255,255,0.40);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+  text-align: center;
 }
-.hev-stat__sep {
-  width: 1px;
-  height: 28px;
-  background: rgba(255,255,255,0.08);
-}
+/* remove old separator div — hidden */
+.hev-stat__sep { display: none; }
 
 /* ── CTA Row ── */
 .hev-cta-row {
   display: flex;
-  gap: 10px;
-  padding-top: 6px;
+  gap: 8px;
 }
 .hev-btn {
   flex: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 11px 18px;
+  gap: 6px;
+  padding: 10px 14px;
   border-radius: 9px;
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.22s ease;
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
+  white-space: nowrap;
 }
 .hev-btn--primary {
   color: #060f22;
   font-weight: 800;
 }
 .hev-btn--primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 32px rgba(0,0,0,0.40);
+  transform: translateY(-2px);
   filter: brightness(1.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.32);
 }
 .hev-btn--wa {
-  background: rgba(37,211,102,0.11);
+  background: rgba(37,211,102,0.12);
   color: #4ade80;
-  border-color: rgba(37,211,102,0.28);
+  border-color: rgba(37,211,102,0.30);
 }
 .hev-btn--wa:hover {
-  background: rgba(37,211,102,0.20);
+  background: rgba(37,211,102,0.22);
   border-color: #4ade80;
   transform: translateY(-2px);
 }
