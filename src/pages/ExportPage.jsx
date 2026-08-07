@@ -212,6 +212,7 @@ const CATEGORIES = [
     title: 'Our Watch Export Range',
     sub: 'Premium timepieces sourced for bulk and retail export — full documentation and custom packaging available.',
     accentColor: '#f97316',
+    imgBg: '#1a0f05',
     FallbackIcon: GiWatch,
     pdfFile: './Watch.pdf',
     pdfLabel: 'Wall Watch Catalog PDF',
@@ -247,6 +248,7 @@ const CATEGORIES = [
     title: 'Our Furniture Export Range',
     sub: 'Handcrafted and modern furniture for residential, hospitality and office spaces — shipped globally with full export documentation.',
     accentColor: '#a855f7',
+    imgBg: '#f5f0ff',
     FallbackIcon: GiSofa,
     pdfFile: './Furniture.pdf',
     pdfLabel: 'Furniture Catalog PDF',
@@ -282,6 +284,7 @@ const CATEGORIES = [
     title: 'Our Sink Export Range',
     sub: 'Premium kitchen sinks in quartz and stainless steel — available in branded and non-branded variants, built for durability and global export.',
     accentColor: '#06b6d4',
+    imgBg: '#f0f8ff',
     FallbackIcon: MdOutlineKitchen,
     pdfFile: '.Company-sink/.pdf',
     pdfLabel: 'Quartz Sink Catalogue PDF',
@@ -328,6 +331,7 @@ const CATEGORIES = [
     title: 'Our Mirror Export Range',
     sub: 'Decorative, LED-illuminated and frameless mirrors for residential and commercial spaces — custom shapes and sizes available on request.',
     accentColor: '#22c55e',
+    imgBg: '#f0fff4',
     FallbackIcon: GiMirrorMirror,
     pdfFile: './Mirror.pdf',
     pdfLabel: 'Mirror Catalog PDF',
@@ -375,6 +379,7 @@ const CATEGORIES = [
     title: 'Our Marble & Granite Export Range',
     sub: 'Premium natural marble and granite slabs, tiles and cut-to-size pieces — sourced from top quarries and exported globally with full certification.',
     accentColor: '#be9b6e',
+    imgBg: '#faf7f2',
     FallbackIcon: GiStonePath,
     pdfFile: './Marble.pdf',
     pdfLabel: 'Marble & Granite Catalog PDF',
@@ -382,31 +387,34 @@ const CATEGORIES = [
     available: true,
     cards: [
       {
-        image: './M1.png',
+        image: './marble1.jpeg',
         name: 'Natural Marble Slabs & Tiles',
         description: 'Premium natural marble in polished, honed and brushed finishes. Available in a wide range of colours and veining patterns — ideal for flooring, cladding and countertops.',
         badge: 'Premium', badgeColor: '#be9b6e',
         tags: ['Natural Marble', 'Polished Finish', 'Flooring'],
+        imgPosition: 'center center',
         pdf: '/Marble.pdf',
         pdfName: 'TREEN_Marble_Catalog.pdf',
         pdfLabel: 'View Products',
       },
       {
-       image: './M2.png',
+        image: './marble4.jpeg',
         name: 'Granite Slabs & Cut-to-Size',
         description: 'High-durability granite slabs and tiles for kitchens, bathrooms and exterior cladding. Heat and scratch resistant with exceptional longevity for commercial and residential use.',
         badge: 'Best Seller', badgeColor: '#a855f7',
         tags: ['Granite', 'Heat Resistant', 'Commercial'],
+        imgPosition: 'center center',
         pdf: '/Marble.pdf',
         pdfName: 'TREEN_Granite_Catalog.pdf',
         pdfLabel: 'View Products',
       },
       {
-        image: './M3.png',
+        image: './marble2.jpeg',
         name: 'Custom & Bulk Stone Orders',
         description: 'Custom cut-to-size slabs, profiled edges and bulk stone orders for builders, architects and interior designers. Competitive MOQs with full export documentation.',
         badge: 'Export Ready', badgeColor: '#22c55e',
         tags: ['Custom Cut', 'Bulk Orders', 'Architects'],
+        imgPosition: 'center top',
         pdf: '/Marble.pdf',
         pdfName: 'TREEN_Stone_Export_Catalog.pdf',
         pdfLabel: 'View Products',
@@ -418,7 +426,7 @@ const CATEGORIES = [
 /* ── Reusable product showcase section ── */
 function ProductShowcase({ category }) {
   const {
-    id, tag, title, sub, accentColor, FallbackIcon,
+    id, tag, title, sub, accentColor, imgBg, FallbackIcon,
     pdfFile, pdfLabel, waText, available, cards,
   } = category
 
@@ -444,13 +452,17 @@ function ProductShowcase({ category }) {
             whileHover={{ y: -8, transition: { duration: 0.24 } }}
           >
             {/* Image */}
-            <div className={`ep-sc-card__img-wrap${card.containImg ? ' ep-sc-card__img-wrap--contain' : ''}`}>
+            <div
+              className={`ep-sc-card__img-wrap${card.containImg ? ' ep-sc-card__img-wrap--contain' : ''}`}
+              style={imgBg ? { background: imgBg } : undefined}
+            >
               {card.image ? (
                 <>
                   <img
                     src={card.image}
                     alt={card.name}
                     className="ep-sc-card__img"
+                    style={card.imgPosition ? { objectPosition: card.imgPosition } : undefined}
                     onError={(e) => {
                       e.currentTarget.style.display = 'none'
                       e.currentTarget.nextSibling.style.display = 'flex'
